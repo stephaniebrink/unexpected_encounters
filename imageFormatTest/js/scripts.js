@@ -28,7 +28,7 @@ $("#locSubmit").click(function(){
 function trovePicsApiCall(locQuery) {
     
     var key = 'jg79p9ghks94tkd3';
-    var url = 'http://api.trove.nla.gov.au/result?q=' + locQuery + '%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + key;
+    var url = 'http://api.trove.nla.gov.au/result?q=' + locQuery + '%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + key + "&encoding=json&callback=?";
     
     $.getJSON(url, function(data) {
         
@@ -72,7 +72,7 @@ function trovePicsApiCall(locQuery) {
 function troveNewsApiCall(locQuery) {
     
     var key = 'jg79p9ghks94tkd3';
-    var url = 'http://api.trove.nla.gov.au/result?q=' + locQuery + '%20date:[*%20TO%201930]&zone=newspaper&reclevel=full&include=articletext&key=' + key;
+    var url = 'http://api.trove.nla.gov.au/result?q=' + locQuery + '%20date:[*%20TO%201930]&zone=newspaper&reclevel=full&include=articletext&key=' + key + "&encoding=json&callback=?";
     
     $.getJSON(url, function(data) {
         
