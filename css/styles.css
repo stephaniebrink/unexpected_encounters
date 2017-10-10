@@ -1,4 +1,7 @@
 
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 body {
     height:100vh;
     width:100vw;
@@ -12,9 +15,8 @@ body {
 }
 
 
-/***********************
-INTRO
-************************/
+/* Landing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #intro {
     position: fixed;
@@ -35,12 +37,12 @@ INTRO
         line-height: .9em;
         text-transform: uppercase;
     }
+    
 
-/***********************
-LOADER
-************************/
+/* Loader
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#loadScreen {
+#loading {
     position: fixed;
     display: none;
     top: 0;
@@ -88,9 +90,9 @@ LOADER
         100% { transform: rotate(-360deg); }
     }
 
-/***********************
-LOCATION SEARCH
-************************/
+
+/* Location search
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #locSearch {
     position: absolute;
@@ -149,12 +151,10 @@ LOCATION SEARCH
     }
 
 
+/*  Main
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-/***********************
-MAIN
-************************/
-
-#mainContainer {
+#results {
     
 }
     h2 {
@@ -192,11 +192,10 @@ MAIN
         }
 
 
-/***********************
-MEDIA QUERIES
-************************/
+/* Media queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-/*for portrait phone*/
+/* --- for portrait phone --- */
 @media (max-width: 500px) {
     h1 {
         font-size: 3em;
@@ -216,13 +215,10 @@ MEDIA QUERIES
     }
 }
 
-/*for landscape phone*/
+/* --- for landscape phone --- */
 @media (max-height: 600px) {
     h1 {
         margin: 0;
         font-size: 3em;
     }
 }
-
-
-
