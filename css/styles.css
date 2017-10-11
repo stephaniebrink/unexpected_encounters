@@ -8,6 +8,8 @@ body {
     margin: 0;
     padding: 0;
     background-color: #1f232a;
+    font-family: 'mr-eaves-xl-modern', sans-serif;
+    font-weight: 300; /* book: 300, regular: 400, bold: 700 */
 }
 
 * {
