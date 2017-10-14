@@ -5,55 +5,69 @@ $(document).ready(function() {
 
 	var troveKey = 'jg79p9ghks94tkd3',
 		mapKey = 'AIzaSyBl5D5R3IDFPQd53C_ILtRu9yAifsSCNvM',
-		search = $( '#locSearch' ),
 		currLoc,
 		lat,
 		lng;
-
-
-	// ----- FIND USER'S LOCATION -----
-	
-	// NOTE: this only works when viewing the file in your browser (i.e. file:///Volumes/Mactinosh etc...). 
-	// We may need to see if we can get the user's location using the Google Maps API instead
-	// Because otherwise Typekit won't work.
-		
-	if (navigator.geolocation) {
-        console.log(navigator.geolocation);
-		        
-        function success(pos) {           
-            // Store the current coordinates
-            var crds = pos.coords;
-			
-			// Log coordinates to console
-			console.log(crds);
-			console.log('My current position is: ');
-            console.log('Latitude: ' + crds.latitude);
-            console.log('Longitude: ' + crds.longitude);
-            console.log('More or less: ' + crds.accuracy + ' metres.');
-			
-			// Add coordinates to variables
-			lat = crds.latitude;
-			lng = crds.longitude;
-        }
-        
-        function error(err) {
-			// Log error to console
-            console.log(err);
-            
-            // Set default location to Canberra
-            // This doesn't do anything at the moment
-			var defaultLocation = '-35.28346,149.12807';
-        }
-        
-        // Prompt the user for their location
-        navigator.geolocation.getCurrentPosition(success, error);
-    };
     
+
+    // ----- LEAVE INTRO PAGE -----
+    $('#intro').click(function() {
+        $("#intro").css("display","none");
+        $("#onboard").css("display","block");
+    });
+
+    
+    // ----- LEAVE ONBOARDING PAGE -----
+    $('#gotIt').click(function() {
+        $("#onboard").css("display","none");
+        $("#home").css("display","block");
+        
+        // ----- FIND USER'S LOCATION -----
+        // NOTE: this only works when viewing the file in your browser (i.e. file:///Volumes/Mactinosh etc...). 
+        // We may need to see if we can get the user's location using the Google Maps API instead
+        // Because otherwise Typekit won't work.
+
+        if (navigator.geolocation) {
+            console.log(navigator.geolocation);
+
+            function success(pos) {           
+                // Store the current coordinates
+                var crds = pos.coords;
+
+                // Log coordinates to console
+                console.log(crds);
+                console.log('My current position is: ');
+                console.log('Latitude: ' + crds.latitude);
+                console.log('Longitude: ' + crds.longitude);
+                console.log('More or less: ' + crds.accuracy + ' metres.');
+
+                // Add coordinates to variables
+                lat = crds.latitude;
+                lng = crds.longitude;
+            }
+
+            function error(err) {
+                // Log error to console
+                console.log(err);
+
+                // Set default location to Canberra
+                // This doesn't do anything at the moment
+                var defaultLocation = '-35.28346,149.12807';
+            }
+
+            // Prompt the user for their location
+            navigator.geolocation.getCurrentPosition(success, error);
+        };
+    });
+
 	
 	// ----- GOOGLE MAP API: PLACES LIBRARY -----
 	// Attribution policies can be found here: https://developers.google.com/places/web-service/policies
 	
 	$('#find-places').click(function() {
+        
+        // Show loading screen
+        $("#loading").css("display","block");
 
 		var url = 'https://maps.googleapis.com/maps/api/js?key=' + mapKey + '&libraries=places&encoding=json&callback=?',
 			service,
@@ -101,11 +115,43 @@ $(document).ready(function() {
 					console.log("It's vicinity is: " + vicinity);
 					
 					// Append places to page
-					$('#places').append('<p>' + place + '</p>');
+					$('#places').append('<p class="place">' + place + '</p>');
 					// createMarker(results[i]);
+                    
 		    	}
 		  	}
+            
+            // Hide homepage
+            $("#home").css("display","none");
+            
+            // Display Discovery page
+            $("#select").css("display","block");
+            
+            // Hide loading screen
+            loadComplete();
+            
+            // ----- SELECT PLACE -----
+            // K: I think this function needs to be here, AFTER places are appended
+            $('.place').click(function() {
+                
+                console.log( "Place selected: " + $(this).html() );
+                
+                // Show loading screen
+                $("#loading").css("display","block");
+                
+                // Set place selection
+                var locQuery = $(this).html()
+                
+                // Append place name to results page
+                $("#resultsList").append('<h2 id="place-name">' + locQuery + '</h2>')
+
+                
+                // Retrieve Flickr pics data from Trove
+                trovePics(locQuery);
+                
+            });
 		}
+        
 	})
 	
 	// This is the data that a Nearby Places call returns: 
@@ -127,40 +173,13 @@ $(document).ready(function() {
 		"vicinity":"Bywong",
 		"html_attributions":[]} (scripts.js, line 88)			
 	*/
-
-
-	// ----- LOCATION SEARCH -----
-
-	$("#locSubmit").click(function(){
     
-	    // Set location query
-	    var locQuery = $('#locQuery').val();
-	    
-	    // Stay on page if location not entered
-	    if (locQuery == '') {
-	        return;
-	    }
-	    
-	    // Show loading screen
-	    $("#loading").css("display","block");
-	    
-	    // Prevent button from refreshing the page
-	    event.preventDefault()
-	    
-	    // Reset location query text
-	    $('#locQuery').val("");
-	    
-	    // Trove API call
-	    trovePics(locQuery);
-	    
-	});
-
-
+    
 	// ----- TROVE API: FLICKR PICTURES -----
 
 	function trovePics(locQuery) {
 	    
-	    var url = 'http://api.trove.nla.gov.au/result?q=' + locQuery + '%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + troveKey + "&encoding=json&callback=?";
+	    var url = 'http://api.trove.nla.gov.au/result?q="' + locQuery + '"%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + troveKey + "&encoding=json&callback=?";
 	    
 	    $.getJSON(url, function(data) {
 	        
@@ -173,29 +192,20 @@ $(document).ready(function() {
 	        // If Trove found a match
 	        if (zoneArray[0].records.n > 0) {
 	            
-	            // Hide intro screen and search box
-	            search.css("opacity","0");
-	            search.css("z-index","8");
-	            search.css("bottom","-10vh");
-	            $("#intro").css("display","none");
-	            
-	            // Hide error messaage
-	            $("#locError").css("display","none");
-	            
-	            // Change query placeholder text
-	            $("#locQuery").attr("placeholder", "Where to now?");
-	            
 	            // Display images
 	            var workArray = zoneArray[0].records.work;
 	            
 	            for (i = 0; i < workArray.length; i++) {
 	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution;
-	                $("#pictures").append('<img class="troveImg" src="' + versionImg + '" />');
-	            }
+                    var versionTitle = workArray[i].title;
+	                $("#resultsList").append('<div class="results"><img src="' + versionImg + '" class="results-img"><h3 class="results-title">' + versionTitle + '</h3></div>')
+                }
 	            
-	            troveNews(locQuery);
+                // Retrieve newspaper article data from Trove
+                troveNews(locQuery);
 	            
 	        } else {
+                // Retrieve newspaper article data from Trove
 	            troveNews(locQuery);
 	        };
 	    });
@@ -206,7 +216,7 @@ $(document).ready(function() {
 
 	function troveNews(locQuery) {
 	    
-	    var url = 'http://api.trove.nla.gov.au/result?q=' + locQuery + '%20date:[*%20TO%201930]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
+	    var url = 'http://api.trove.nla.gov.au/result?q="' + locQuery + '"%20date:[*%20TO%201930]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
 	    
 	    $.getJSON(url, function(data) {
 	        
@@ -219,15 +229,6 @@ $(document).ready(function() {
 	        // If Trove found a match
 	        if (newsZone.records.n > 0) {
 	            
-	            // Hide intro screen and search box
-	            search.css("opacity","0");
-	            search.css("z-index","8");
-	            search.css("bottom","-10vh");
-	            $("#intro").css("display","none");
-	            
-	            // Hide error messaage
-	            $("#locError").css("display","none");
-	            
 	            // Display images
 	            var articleArray = newsZone.records.article;
 	            
@@ -239,11 +240,19 @@ $(document).ready(function() {
 						newsText = articleArray[i].articleText;
 	                
 	                // Append to page
-					$("#newspapers").append('<object width="500" height="700" data="' + pdfUrl + '"></object>');
-	                $("#newspaper-text").append('<div class="newsArticle"><h3 class="newsArticleHead">' + newsHeading + '</h3>' + newsText + '</div>');
+                    $("#resultsList").append('<div class="results"><img src="images/newspaper01.jpg" class="results-img"><h3 class="results-title">' + newsHeading + '</h3></div>')
+                    //$("#newspapers").append('<object width="500" height="700" data="' + pdfUrl + '"></object>');
+	                //$("#newspaper-text").append('<div class="newsArticle"><h3 class="newsArticleHead">' + newsHeading + '</h3>' + newsText + '</div>');
 	            }
 	            
-	            loadComplete();
+	            // Hide place selection page
+                $("#select").css("display","none");
+
+                // Display Results page
+                $("#results").css("display","block");
+
+                // Hide loading screen
+                loadComplete();
 	            
 	        } else {
 	            // Show error message

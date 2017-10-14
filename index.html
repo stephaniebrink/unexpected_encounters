@@ -45,16 +45,28 @@
 		    <!-- Text -->
 		    <div class="row">
 			    <div class="eight columns">
-					<p>Helpful onboarding text to go here</p>
-					<p id="disclaimer">Disclaimer to go here</p>
+                    <img id="sayWhat" src="" />
+					<p>Unexpected Discoveries searches through millions of items to show you pictures and historical newspaper articles about wherever you are in Australia.</p>
+                    <p>Go ahead, let’s find places near you and get discovering!</p>
+					<p id="disclaimer">Disclaimer</p>
+			    </div>
+		    </div>
+           
+            <!-- Disclaimer -->
+		    <div class="row" id="disclaimerContainer">
+			    <div class="six columns">
+					<p>Please be aware that some historical content may be culturally sensitive or may be considered inappropriate or offensive today.</p>
+                    <p>Members of Aboriginal, Torres Strait Islander and Maori communities are advised that this website may contain names and images of deceased people.</p>
 			    </div>
 		    </div>
 		    
 		    <!-- Button -->
 		    <div class="row">
 			    <div class="six columns">
-					<!-- not sure whether to use anchor tag or button here -->
-					<a data-link="home" class="button">Got it</a>
+					<!-- L: not sure whether to use anchor tag or button here -->
+                    <!-- K: I don't know much about data-links. Used buttons, but happy to change -->
+                    <!--<a data-link="home" class="button">Got it</a>-->
+                    <button id="gotIt">Got it</button>
 			    </div>
 		    </div>
 	    </section>
@@ -71,12 +83,22 @@
 				    <div class="loc-icon"></div>
 
 			    	<!-- Button -->					
-					<a data-link="find-places" class="button" id="find-places">Find places nearby</a>
-				</div>
+                    <!--<a data-link="find-places" class="button" id="find-places">Find places nearby</a>-->
+				    <button id="find-places">Find places nearby</button>
+                </div>
 		    </div>
 		    
 		    <div id="map"></div>
-		    <div id="places"></div>
+		    
+	    </section>
+        
+        <!---- About page ---->    
+	    <section id="about">
+	        <div class="row">
+	        	<div class="eight columns">
+
+	        	</div>
+	        </div>
 	    </section>
 	
 	
@@ -98,17 +120,8 @@
 	        </div>
 	    </section>
 	
-			<!-- Original markup -->
-			<section id="locSearch">
-		        <p id="locError">Can't find that place - try another!</p>
-		        <form role="search">
-		            <input id="locQuery" type="search" placeholder="Where to?" autofocus required autocomplete="off" />
-		            <input id="locSubmit" type="submit" value="GO" />
-		        </form>
-		    </section>
-	    
-	    
-		<!---- Nav for following screens ---->  
+
+        <!---- Nav for following screens ---->  
 		<!-- should the nav be copy + pasted in each section, or just not hidden? -->
 		<div class="row" id="nav">
 			<div class="twelve columns">
@@ -126,6 +139,7 @@
 					
 					<!-- not sure how we intend to append list of places: -->
 					<!-- lists or divs? -->
+                    <div id="places"></div>
 					<ul>
 					</ul>
 					
@@ -153,34 +167,26 @@
 	    <!---- Results list / grid ---->    
 	    <section id="results">
 	        <div class="row">
-	        	<div class="twelve columns">
+	        	<div class="twelve columns" id="resultsList">
 		        
 			        <!-- Icon and place name -->
 					<img src="" class="loc-marker-icon">
+                    
+                    <!-- Placename gets appended here -->
+                    <!--
+                    Placename structure:
 					<h2 id="place-name"></h2>
+                    -->
 					
-					<!-- All artefacts returned -->
-					<!-- not sure how we plan to append results here -->
+					<!-- Results get appended here -->
+                    <!--
+                    Results structure:
 					<div class="results">
 						<img src="" class="results-img">
 						<h3 class="results-title"></h3>
 					</div>
-				
-					<!-- Original markup -->	
-					<!-- will need to restructure this for randomisation -->
-			        <section id="pictures">
-			            <h2>Flickr Images</h2>
-			        </section>
-			        
-			        <section id="newspapers">
-			            <h2>Newspaper Article PDFs</h2>
-			        </section>
-			        
-			        <section id="newspaper-text">
-			            <h2>Newspaper Article Text</h2>
-			        </section>
-			        
-	        	</div>
+                    -->
+                </div>
 	        </div>
 	    </section>
 	
@@ -225,7 +231,7 @@
 	        	</div>
 	        </div>
 	    </section>
-
+        
 	</div> <!-- close .container -->
 	
 	<!-- Scripts
