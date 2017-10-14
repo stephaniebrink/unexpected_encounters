@@ -15,9 +15,19 @@ $(document).ready(function() {
         $("#intro").css("display","none");
         $("#onboard").css("display","block");
     });
+    
+    // ----- ON CLICK: "DISCLAIMER" -----
+    $('#disclaimerButton').click(function() {
+        $("#disclaimer").css("display","block");
+    });
+    
+    // ----- ON CLICK: DISCLAIMER "OK" -----
+    $('#disclaimerOk').click(function() {
+        $("#disclaimer").css("display","none");
+    });
 
     
-    // ----- LEAVE ONBOARDING PAGE -----
+    // ----- ON CLICK: "GOT IT" -----
     $('#gotIt').click(function() {
         $("#onboard").css("display","none");
         $("#home").css("display","block");
@@ -58,6 +68,15 @@ $(document).ready(function() {
             // Prompt the user for their location
             navigator.geolocation.getCurrentPosition(success, error);
         };
+    });
+    
+    // ----- ABOUT BUTTON -----
+    $('#aboutButton').click(function() {
+        $("#about").css("display","block");
+    });
+    
+    $('#aboutBack').click(function() {
+        $("#about").css("display","none");
     });
 
 	
@@ -216,7 +235,7 @@ $(document).ready(function() {
 
 	function troveNews(locQuery) {
 	    
-	    var url = 'http://api.trove.nla.gov.au/result?q="' + locQuery + '"%20date:[*%20TO%201930]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
+	    var url = 'http://api.trove.nla.gov.au/result?q="' + locQuery + '"%20date:[*%20TO%201900]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
 	    
 	    $.getJSON(url, function(data) {
 	        

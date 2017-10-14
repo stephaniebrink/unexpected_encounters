@@ -48,33 +48,42 @@
                     <img id="sayWhat" src="" />
 					<p>Unexpected Discoveries searches through millions of items to show you pictures and historical newspaper articles about wherever you are in Australia.</p>
                     <p>Go ahead, let’s find places near you and get discovering!</p>
-					<p id="disclaimer">Disclaimer</p>
 			    </div>
 		    </div>
            
-            <!-- Disclaimer -->
-		    <div class="row" id="disclaimerContainer">
-			    <div class="six columns">
-					<p>Please be aware that some historical content may be culturally sensitive or may be considered inappropriate or offensive today.</p>
-                    <p>Members of Aboriginal, Torres Strait Islander and Maori communities are advised that this website may contain names and images of deceased people.</p>
+           <div class="row">
+			    <div class="eight columns">
+					<button id="disclaimerButton">Disclaimer</button>
 			    </div>
-		    </div>
+           </div>
 		    
-		    <!-- Button -->
-		    <div class="row">
-			    <div class="six columns">
-					<!-- L: not sure whether to use anchor tag or button here -->
+            <!-- Button -->
+            <div class="row">
+                <div class="six columns">
+                    <!-- L: not sure whether to use anchor tag or button here -->
                     <!-- K: I don't know much about data-links. Used buttons, but happy to change -->
                     <!--<a data-link="home" class="button">Got it</a>-->
                     <button id="gotIt">Got it</button>
-			    </div>
+                </div>
+            </div>
+	    </section>
+        
+        <!---- Disclaimer ---->
+        <section id="disclaimer">
+		    <div class="row">
+			    <div class="six columns">
+					<p>Please be aware that some historical content may be culturally sensitive or may be considered inappropriate or offensive today.</p>
+                    <p>Members of Aboriginal, Torres Strait Islander and Maori communities are advised that this website may contain names and images of deceased people.</p>
+                    <button id="disclaimerOk">Ok</button>
+                </div>
 		    </div>
 	    </section>
 	    
 	    
 	    <!---- Home ---->    
 		<section id="home">
-		    <a data-link="about">About</a>
+            <!--<a data-link="about">About</a>-->
+            <button id="aboutButton">About</button>
 		    
 		    <div class="row">
 			    <div class="eight columns">
@@ -96,7 +105,18 @@
 	    <section id="about">
 	        <div class="row">
 	        	<div class="eight columns">
-
+                    <button id="aboutBack">Back</button>
+                    <h2>About</h2>
+                    <h3>Why am I seeing these items?</h3>
+                    <p>Unexpected Discoveries uses your location to try to find items related to places near you. Unfortunately, this automated process doesn’t always get it right. Sometimes you might see items that aren’t quite about places near you, but might be about something with a similar name.</p>
+                    <p>We hope that you delight in whatever unexpected discoveries you make!</p>
+                    <h3>Where are these items from?</h3>
+                    <p>All the pictures and newspaper articles you see in Unexpected Discoveries are from Trove, a service provided by the National Library of Australia that brings together collections of items from all around Australia.</p>
+                    <p>Trove can connect you to hundreds of millions of items and Unexpected Discoveries accesses a selection of these.</p>
+                    <h3>How can I get involved?</h3>
+                    <p>Trove, and Unexpected Discoveries, are made even better by user contributions!</p>
+                    <p>Find out how you can <a href="">upload your own photos to Trove</a></p>
+                    <p>Find out how you can <a href="">help correct newspaper text</a> that hasn’t been translated properly.</p>
 	        	</div>
 	        </div>
 	    </section>

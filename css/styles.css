@@ -32,14 +32,8 @@ body {
     width: 100%;
     display: none;
 }
-    #disclaimer {
-        text-align: center;
+    #disclaimerButton {
         cursor: pointer;
-    }
-    #disclaimerContainer {
-        display: none;
-        height: 100vh;
-        width: 100%;
     }
     #gotIt {
         cursor: pointer;
@@ -47,11 +41,26 @@ body {
 #home {
 	display: none;
 }
+#disclaimer {
+	display: none;
+    background-color: rgba(97,151,65,1);
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    overflow: scroll;
+}
 
 /* About
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #about {
 	display: none;
+    background-color: rgba(97,151,65,1);
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    overflow: scroll;
 }
 
 
