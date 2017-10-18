@@ -25,7 +25,6 @@ $(document).ready(function() {
     $('#disclaimerOk').click(function() {
         $("#disclaimer").css("display","none");
     });
-
     
     // ----- ON CLICK: "GOT IT" -----
     $('#gotIt').click(function() {
@@ -68,7 +67,7 @@ $(document).ready(function() {
             // Prompt the user for their location
             navigator.geolocation.getCurrentPosition(success, error);
         };
-    });
+    5});
     
     // ----- ABOUT BUTTON -----
     $('#aboutButton').click(function() {
@@ -98,8 +97,11 @@ $(document).ready(function() {
 		$.getJSON(url, function(data) {
 			
 			// TRY: Coordinates for Canberra Centre
- 			// currLoc = new google.maps.LatLng(-35.2791,149.1338);
+//  			currLoc = new google.maps.LatLng(-35.2791,149.1338);
 			
+			// TRY: Coordinates for National Library of Australia  			
+//  			currLoc = new google.maps.LatLng(-35.296623,149.129822);
+
 			// Current location coordinates
 			currLoc = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
 			console.log('current location: ' + currLoc);
@@ -114,9 +116,8 @@ $(document).ready(function() {
 			// Find docs on 'type' here: https://developers.google.com/places/supported_types
 			var request = {
 			    location: currLoc,
-			    radius: '500',
-			    type: ['point-of-interest']
-			};
+			    radius: '500'
+  			};
 		
 			service = new google.maps.places.PlacesService(map);
 			service.nearbySearch(request, callback);
@@ -124,21 +125,49 @@ $(document).ready(function() {
 		
 		function callback(results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
+				
+				console.log(results);
+				
+				// Set desired place types
+				var desiredTypes = ['airport', 'amusement_park', 'aquarium', 'art_gallery', 'bank', 'campground', 'casino', 'cemetery', 'church', 'city_hall', 'courthouse',  'embassy', 'fire_station', 'hindu_temple', 'hospital', 'library', 'local_government_office', 'mosque', 'museum', 'park', 'police', 'post_office', 'school', 'stadium', 'synagogue', 'university', 'zoo', 'colloquial_area', 'country', 'locality', 'natural_feature', 'neighborhood', 'place_of_worship', 'political', 'street_address'];
+				var desiredPlace = '';
+
+				// Loop through all nearby place results
 				for (var i = 0; i < results.length; i++) {
 					
 					var place = results[i].name,
-						vicinity = results[i].vicinity;
-					
-					// Log place name and vicinity to console	
+						vicinity = results[i].vicinity,
+						types = results[i].types;
+																	
+					// Log place name, vicinity and types to console	
 					console.log('A place has been found: ' + place);
-					console.log("It's vicinity is: " + vicinity);
+					console.log('The vicinity is: ' + vicinity);
+					console.log('The types are: ' + types);
+				
+					// Loop through all desired types
+					for (var d = 0; d < desiredTypes.length; d++) {
 					
-					// Append places to page
-					$('#places').append('<p class="place">' + place + '</p>');
-					// createMarker(results[i]);
-                    
-		    	}
-		  	}
+						// Loop through types for each place result
+ 						for (var t = 0; t < types.length; t++) {
+ 							
+ 							// If there's a match, put place in desired place variable
+ 							if (types[t] == desiredTypes[d]) {
+	 							desiredPlace = place;
+ 							}
+						}
+		    		}	
+					
+					// If desired place is not blank
+					if (desiredPlace != '') {
+						
+						// Append place name to page
+						$('#places').append('<p class="place">' + desiredPlace + '</p>');
+						
+						// Reset desired place  
+						desiredPlace = '';
+					}
+				}
+            }
             
             // Hide homepage
             $("#home").css("display","none");
@@ -215,6 +244,7 @@ $(document).ready(function() {
 	            var workArray = zoneArray[0].records.work;
 	            
 	            for (i = 0; i < workArray.length; i++) {
+	                // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
 	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution;
                     var versionTitle = workArray[i].title;
 	                $("#resultsList").append('<div class="results"><img src="' + versionImg + '" class="results-img"><h3 class="results-title">' + versionTitle + '</h3></div>')
