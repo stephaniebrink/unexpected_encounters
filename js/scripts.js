@@ -67,7 +67,7 @@ $(document).ready(function() {
             // Prompt the user for their location
             navigator.geolocation.getCurrentPosition(success, error);
         };
-    5});
+    });
     
     // ----- ABOUT BUTTON -----
     $('#aboutButton').click(function() {
@@ -182,20 +182,26 @@ $(document).ready(function() {
             // K: I think this function needs to be here, AFTER places are appended
             $('.place').click(function() {
                 
-                console.log( "Place selected: " + $(this).html() );
-                
                 // Show loading screen
                 $("#loading").css("display","block");
                 
                 // Set place selection
-                var locQuery = $(this).html()
+                var locQuery = $(this).html();
+                
+                // Parse place selection to remove html punctuation code (eg. turn &amp; into &)
+                var parsedLocQuery = jQuery.parseHTML(locQuery);
+                var place = parsedLocQuery[0].data;
+                
+                console.log( "Place selected: " + place );
                 
                 // Append place name to results page
-                $("#resultsList").append('<h2 id="place-name">' + locQuery + '</h2>')
-
+                $("#resultsList").append('<h2 id="place-name">' + place + '</h2>')
                 
+                // Encode place name for Trove API call (Eg. turn & into %26)
+                var encodedPlace = encodeURIComponent(place);
+
                 // Retrieve Flickr pics data from Trove
-                trovePics(locQuery);
+                trovePics(encodedPlace);
                 
             });
 		}
@@ -225,9 +231,9 @@ $(document).ready(function() {
     
 	// ----- TROVE API: FLICKR PICTURES -----
 
-	function trovePics(locQuery) {
+	function trovePics(place) {
 	    
-	    var url = 'http://api.trove.nla.gov.au/result?q="' + locQuery + '"%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + troveKey + "&encoding=json&callback=?";
+	    var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + troveKey + "&encoding=json&callback=?";
 	    
 	    $.getJSON(url, function(data) {
 	        
@@ -250,12 +256,14 @@ $(document).ready(function() {
 	                $("#resultsList").append('<div class="results"><img src="' + versionImg + '" class="results-img"><h3 class="results-title">' + versionTitle + '</h3></div>')
                 }
 	            
-                // Retrieve newspaper article data from Trove
-                troveNews(locQuery);
+                // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
+                troveNews(place,true);
 	            
 	        } else {
-                // Retrieve newspaper article data from Trove
-	            troveNews(locQuery);
+                // Just retrieve newspaper article data from Trove ('false' indicates there are NO pic results)
+	            troveNews(place,false);
+                
+                console.log("No picture results");
 	        };
 	    });
 	}
@@ -263,9 +271,9 @@ $(document).ready(function() {
 
 	// ----- TROVE API: NEWSPAPER ARTICLES -----
 
-	function troveNews(locQuery) {
+	function troveNews(place,pics) {
 	    
-	    var url = 'http://api.trove.nla.gov.au/result?q="' + locQuery + '"%20date:[*%20TO%201900]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
+	    var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20date:[*%20TO%201900]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
 	    
 	    $.getJSON(url, function(data) {
 	        
@@ -290,9 +298,7 @@ $(document).ready(function() {
 	                
 	                // Append to page
                     $("#resultsList").append('<div class="results"><img src="images/newspaper01.jpg" class="results-img"><h3 class="results-title">' + newsHeading + '</h3></div>')
-                    //$("#newspapers").append('<object width="500" height="700" data="' + pdfUrl + '"></object>');
-	                //$("#newspaper-text").append('<div class="newsArticle"><h3 class="newsArticleHead">' + newsHeading + '</h3>' + newsText + '</div>');
-	            }
+                }
 	            
 	            // Hide place selection page
                 $("#select").css("display","none");
@@ -304,11 +310,31 @@ $(document).ready(function() {
                 loadComplete();
 	            
 	        } else {
-	            // Show error message
-	            $("#locError").css("display","block");
-	            
-	            // Hide loading screen
-	             $("#loading").css("display","none");
+                
+                console.log("No newspaper results");
+                
+                // If there are no newspaper results, but there were picture results
+                if (pics == true) {
+                    
+                    // Hide place selection page
+                    $("#select").css("display","none");
+                    
+                    // Display Results page
+                    $("#results").css("display","block");
+                    
+                    loadComplete();
+                    
+                // If there are no results at all
+                } else {
+                    // Hide place selection page
+                    $("#select").css("display","none");
+                    
+                    // Show error message
+                    $("#locError").css("display","block");
+
+                    loadComplete();
+                }
+                
 	        };
 	    });
 	}
@@ -320,5 +346,15 @@ $(document).ready(function() {
 	    // Hide loading screen
 	    $("#loading").css("display","none");
 	}
+    
+    // ----- NO RESULTS - BACK TO PLACE SELECTION -----
+
+    $('#noresultsBack').click(function() {
+	    // Hide error message
+        $("#locError").css("display","none");
+        
+        // Show place selection page
+        $("#select").css("display","block");         
+	});
 	
 }); // close document ready
