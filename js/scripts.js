@@ -10,11 +10,9 @@ $(document).ready(function() {
 		lng;
     
 
-    // ----- LEAVE INTRO PAGE -----
-    $('#intro').click(function() {
-        $("#intro").css("display","none");
-        $("#onboard").css("display","block");
-    });
+    // ----- INTRO PAGE FADEOUT -----
+    $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
+    $('#onboard').fadeIn('fast').delay(3000);
     
     // ----- ON CLICK: "DISCLAIMER" -----
     $('#disclaimerButton').click(function() {

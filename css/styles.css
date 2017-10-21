@@ -1,6 +1,22 @@
+/* TABLE OF CONTENTS
+
+    Base styles
+    Landing
+    About
+    Navigation
+    Loading
+    Select place
+    Results
+    Individual artifacts
+
+*/
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+html, body {
+    height: 100%;
+}
 
 body {
     margin: 0;
@@ -20,11 +36,37 @@ body {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #intro {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     text-align: center;
     background-color: rgba(97,151,65,1);
     color: #fff;
+}
+
+#intro-centre {
+    padding-top: 85%;
+}
+
+#intro-centre:after {
+    content: url(../images/Handdrawn/Launch-explosion-white.svg);
+    position: absolute;
+    opacity: 0.2;
+    height: 100%;
+    top: 26%;
+    left: 3%;
+    width: 85%;
+}
+
+#logo img {
+    width: 50%;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+#powered {
+    width: 10%;
+    min-width: 80px;
+    max-width: 170px;
 }
 
 #onboard {
