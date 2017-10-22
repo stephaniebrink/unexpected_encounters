@@ -28,50 +28,53 @@
 	
 	
     
-	    <!---- Intro ---->    
-	    <section id="intro">
-            <div id="intro-container" class="container">
-                <div id="intro-row" class="row">
+	    <!-- ---------- Intro ---------- -->    
+	    <section id="intro" class="center">
+            <div id="intro-container" class="container full-height">
+                
+                <div id="intro-row" class="row full-height">
                     <div id="intro-centre" class="twelve columns">
                         <h1 id="logo"><img src="images/Unexpected-Discoveries-logo-white.svg" alt="Unexpected Discoveries"></h1>
-                        <img id="powered" src="images/Powered-by-Trove.svg" alt="Powered by Trove">
+                        <img id="powered" src="images/powered-by-Trove.svg" alt="Powered by Trove">
                     </div>
                 </div>
-            </div>
+                
+            </div> <!-- close .container div -->
 	    </section>
 	    
 	    
-	    <!---- Onboarding ---->    
-	   <section id="onboard">
-		    
-		    <!-- Text -->
-		    <div class="row">
-			    <div class="eight columns">
-                    <img id="sayWhat" src="" />
-					<p>Unexpected Discoveries searches through millions of items to show you pictures and historical newspaper articles about wherever you are in Australia.</p>
-                    <p>Go ahead, let’s find places near you and get discovering!</p>
-			    </div>
-		    </div>
-           
-           <div class="row">
-			    <div class="eight columns">
-					<button id="disclaimerButton">Disclaimer</button>
-			    </div>
-           </div>
-		    
-            <!-- Button -->
-            <div class="row">
-                <div class="six columns">
-                    <!-- L: not sure whether to use anchor tag or button here -->
-                    <!-- K: I don't know much about data-links. Used buttons, but happy to change -->
-                    <!--<a data-link="home" class="button">Got it</a>-->
-                    <button id="gotIt">Got it</button>
+	    <!-- ---------- Onboarding ---------- -->    
+	   <section id="onboard" class="hide">
+		    <div id="onboard-container" class="container">
+                
+                <!-- Text -->
+                <div id="onboard-row" class="row">
+                    <div class="eight columns offset-by-two center">
+                        <img src="images/handdrawn/say-what.svg" alt="">
+                        <p>Unexpected Discoveries searches through millions of items to show you images and historical newspaper articles about wherever you are in Australia.</p>
+                        <p>Go ahead, let’s find places near you and get discovering!</p>
+                    </div>
                 </div>
-            </div>
+
+              <!-- <div class="row">
+                    <div class="six columns">
+                        <button id="disclaimerButton">Disclaimer</button>
+                    </div>
+               </div>-->
+
+                <!-- Button -->
+                <div class="row">
+                    <div class="six columns offset-by-three center">
+                        <button id="got-it">Got it</button>
+                    </div>
+                </div>
+           
+            </div> <!-- close .container div -->
 	    </section>
         
-        <!---- Disclaimer ---->
-        <section id="disclaimer">
+    
+        <!-- ---------- Disclaimer ---------- -->
+        <section id="disclaimer" class="hide">
 		    <div class="row">
 			    <div class="six columns">
 					<p>Please be aware that some historical content may be culturally sensitive or may be considered inappropriate or offensive today.</p>
@@ -82,10 +85,10 @@
 	    </section>
 	    
 	    
-	    <!---- Home ---->    
-		<section id="home">
-            <!--<a data-link="about">About</a>-->
-            <button id="aboutButton">About</button>
+	    <!-- ---------- Home ---------- -->    
+		<section id="home" class="hide">
+            
+            <a id="about-link">About</a>
 		    
 		    <div class="row">
 			    <div class="eight columns">
@@ -103,32 +106,36 @@
 		    
 	    </section>
         
-        <!---- About page ---->    
-	    <section id="about">
+    
+        <!-- ---------- About page ---------- -->    
+	    <section id="about" class="hide">
 	        <div class="row">
 	        	<div class="eight columns">
                     <button id="aboutBack">Back</button>
                     <h2>About</h2>
+                    
                     <h3>Why am I seeing these items?</h3>
                     <p>Unexpected Discoveries uses your location to try to find items related to places near you. Unfortunately, this automated process doesn’t always get it right. Sometimes you might see items that aren’t quite about places near you, but might be about something with a similar name.</p>
                     <p>We hope that you delight in whatever unexpected discoveries you make!</p>
+                    
                     <h3>Where are these items from?</h3>
                     <p>All the pictures and newspaper articles you see in Unexpected Discoveries are from Trove, a service provided by the National Library of Australia that brings together collections of items from all around Australia.</p>
                     <p>Trove can connect you to hundreds of millions of items and Unexpected Discoveries accesses a selection of these.</p>
+                    
                     <h3>How can I get involved?</h3>
-                    <p>Trove, and Unexpected Discoveries, are made even better by user contributions!</p>
-                    <p>Find out how you can <a href="">upload your own photos to Trove</a></p>
-                    <p>Find out how you can <a href="">help correct newspaper text</a> that hasn’t been translated properly.</p>
+                    <p>Trove and Unexpected Discoveries are made even better by user contributions!</p>
+                    <p>Find out how you can <a href="">upload your own images to Trove</a> or help <a href="">correct newspaper text</a> that hasn’t been translated properly.</p>
 	        	</div>
 	        </div>
 	    </section>
         
-        <!---- Error page ---->    
-	    <section id="locError">
+    
+        <!-- ---------- Error page ---------- -->    
+	    <section id="locError" class="hide">
 	        <div class="row">
 	        	<div class="eight columns">
                     <!-- Example error text -->
-                    <p>Oops. No results.</p>
+                    <p>Well this is embarassing, we can't find any images or </p>
                     <p>Why don't you take some pics and upload them to Trove so others can find them?</p>
                     <button id="noresultsBack">Back</button>
                 </div>
@@ -136,8 +143,8 @@
 	    </section>
 	
 	
-	    <!---- Loading: finding nearby places ---->    
-	    <section id="loading">
+	    <!-- ---------- Loading: finding nearby places ---------- -->    
+	    <section id="loading" class="hide">
 	        <div class="row">
 	        	<div class="eight columns">
 
@@ -155,9 +162,9 @@
 	    </section>
 	
 
-        <!---- Nav for following screens ---->  
+        <!-- ---------- Nav for following screens ---------- -->  
 		<!-- should the nav be copy + pasted in each section, or just not hidden? -->
-		<div class="row" id="nav">
+		<div class="row hide" id="nav">
 			<div class="twelve columns">
 				<p id="back"><a data-link="">Back</a></p>
 				<p id="logo-icon"><a data-link="home">Unexpected Discoveries Home</a></p>
@@ -165,8 +172,8 @@
 		</div>
 
 
-	    <!---- Make a discovery ---->    
-		<section id="select">
+	    <!-- ---------- Make a discovery ---------- -->    
+		<section id="select" class="hide">
 		    <div class="row">
 			    <div class="twelve columns">
 					<h2>Make a discovery</h2>
@@ -182,8 +189,8 @@
 	    </section>
 
 	
-	    <!---- Loading: discovering artifacts ---->    
-	    <section id="discovering">
+	    <!-- ---------- Loading: discovering artifacts ---------- -->    
+	    <section id="discovering" class="hide">
 	        <div class="row">
 	        	<div class="eight columns">
 
@@ -198,8 +205,8 @@
 	    </section>
 	
 	
-	    <!---- Results list / grid ---->    
-	    <section id="results">
+	    <!-- ---------- Results list / grid ---------- -->    
+	    <section id="results" class="hide">
 	        <div class="row">
 	        	<div class="twelve columns" id="resultsList">
 		        
@@ -225,8 +232,8 @@
 	    </section>
 	
 	
-	    <!---- Individual artifact: Flickr ---->
-	    <section id="flickr">
+	    <!-- ---------- Individual artifact: Flickr ---------- -->
+	    <section id="flickr" class="hide">
 	        <div class="row">
 	        	<div class="twelve columns">
 		        
@@ -250,8 +257,8 @@
 	    </section>
 	
 	
-	    <!---- Individual artifact: Newspaper ---->
-		<section id="newspaper">
+	    <!-- ---------- Individual artifact: Newspaper ---------- -->
+		<section id="newspaper" class="hide">
 	        <div class="row">
 	        	<div class="ten columns">
 		        

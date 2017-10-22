@@ -2,14 +2,17 @@
 
     Base styles
     Launch
+    Onboarding
+    Home
     About
     Navigation
     Loading
     Select place
     Results
-    Individual artifacts
+    Individual artefacts
 
 */
+
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -31,21 +34,48 @@ body {
     box-sizing: border-box;
 }
 
+/* to extend all to the height and width of the screen */
+section {
+    height: 100%;
+    width: 100%;
+}
+
+/* quick way of hiding everything */
+.hide {
+    display: none;
+}
+
+/* quick way of centering divs holding content to be centered */
+.center {
+    text-align: center;
+}
+
+/* quick way to give an element a full height */
+.full-height {
+    height: 100%;
+}
+
+/* to style all the buttons the same */
+button,
+.button {
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #619741;
+    background-color: #fff;
+    border: #619741 2px solid;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    width: 80%;
+    height: 7rem;
+}
+
 
 /* Launch
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #intro {
-    height: 100%;
-    width: 100%;
-    text-align: center;
     background-color: rgba(97,151,65,1);
     color: #fff;
-}
-
-#intro-container,
-#intro-row {
-    height: 100%;
 }
 
 #intro-row {
@@ -83,23 +113,54 @@ body {
     max-width: 150px;
 }
 
+
 /* Onboarding
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #onboard {
-    height: 100vh;
-    width: 100%;
-    display: none;
+    position: relative;
 }
-    #disclaimerButton {
-        cursor: pointer;
-    }
-    #gotIt {
-        cursor: pointer;
-    }
-#home {
-	display: none;
+
+#onboard-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
+
+#onboard-row img {
+    width: 70%;
+    max-width: 300px;
+}
+
+#onboard-row p {
+    text-align: left;
+    width: 85%;
+}
+
+    #onboard-row p:first-of-type {
+        margin: 4rem auto 2rem;
+    }
+
+    #onboard-row p:last-of-type {
+        margin: 0 auto 4rem;
+    }
+
+#got-it:after {
+    content: url(../images/handdrawn/curved-arrow-up.svg);
+    position: absolute;
+    width: 5rem;
+    top: 88%;
+    left: 75%;
+}
+
+@media screen and (min-width: 550px) {
+    #got-it:after {
+        top: 90%;
+        left: 63%;
+    }
+}
+
 #disclaimer {
 	display: none;
     background-color: rgba(97,151,65,1);
@@ -110,10 +171,19 @@ body {
     overflow: scroll;
 }
 
+
+/* Home
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#about-link {
+    cursor: pointer;
+}
+
+
 /* About
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 #about {
-	display: none;
     background-color: rgba(97,151,65,1);
     color: #fff;
     height: 100vh;
@@ -122,18 +192,10 @@ body {
     overflow: scroll;
 }
 
-/* About
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-#locError {
-	display: none;
-}
-
 
 /* Navigation
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#nav {
-	display: none;
-}
+
 
 
 /* Loading
@@ -150,52 +212,56 @@ body {
     background-color: rgba(97,151,65,1);
     color: #fff;
     text-align: center;
-    display: none;
 }
-    /*To be replaced with new loading animations*/
-    #loader {
-        position: relative;
-        margin: 20% auto 0;
-        width: 15vh;
-        height: 15vh;
-    }
-        #loader1 {
-            position: absolute;
-            border: 5px solid rgba(97,151,65,1);
-            border-top: 5px solid #fff;
-            border-radius: 50%;
-            width: 15vh;
-            height: 15vh;
-            animation: spin 1s linear infinite;
-        }
-        #loader2 {
-            position: absolute;
-            top: 2.5vh;
-            left: 2.5vh;
-            border: 5px solid rgba(97,151,65,1);
-            border-top: 5px solid #fff;
-            border-radius: 50%;
-            width: 10vh;
-            height: 10vh;
-            animation: spinBack 1s linear infinite;
-        }
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    @keyframes spinBack {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(-360deg); }
-    }
+
+/*To be replaced with new loading animations*/
+#loader {
+    position: relative;
+    margin: 20% auto 0;
+    width: 15vh;
+    height: 15vh;
+}
+
+#loader1 {
+    position: absolute;
+    border: 5px solid rgba(97,151,65,1);
+    border-top: 5px solid #fff;
+    border-radius: 50%;
+    width: 15vh;
+    height: 15vh;
+    animation: spin 1s linear infinite;
+}
+
+#loader2 {
+    position: absolute;
+    top: 2.5vh;
+    left: 2.5vh;
+    border: 5px solid rgba(97,151,65,1);
+    border-top: 5px solid #fff;
+    border-radius: 50%;
+    width: 10vh;
+    height: 10vh;
+    animation: spinBack 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spinBack {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
 
 /* Select Place
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#select {
-	display: none;
-}
+
 .place {
     cursor: pointer;
 }
+
     .place:hover {
         background-color: lightgray;
     }
@@ -204,62 +270,51 @@ body {
 /*  Results
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#results {
-    display: none;
+.results {
+    cursor: pointer;
 }
-    .results {
-        cursor: pointer;
+
+    .results:hover {
+        background-color: lightgray;
     }
-        .results:hover {
-            background-color: lightgray;
-        }
 
+h2 {
+    text-align: center;
+    color: #b3b4b4;
+    font-size: 3em;
+    margin: 1em;
+}
 
+.troveImg {
+    display: inline-block;
+    max-width: 50%;
+}
 
+.newsArticle {
+    display: inline-block;
+    width: 30%;
+    margin-left: 1%;
+    margin-bottom: 1rem;
+    background-color: #cfcfcf;
+    padding: 2rem;
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    text-align: justify;
+}
 
-    h2 {
-        text-align: center;
-        color: #b3b4b4;
-        font-size: 3em;
-        margin: 1em;
-    }
-        .troveImg {
-            display: inline-block;
-            max-width: 50%;
-        }
-    .newsArticle {
-        display: inline-block;
-        width: 30%;
-        margin-left: 1%;
-        margin-bottom: 1rem;
-        background-color: #cfcfcf;
-        padding: 2rem;
-        font-family: 'Merriweather', serif;
-        font-weight: 400;
-        text-align: justify;
-    }
-        .newsArticleHead {
-            margin-top: 0;
-            font-weight: 700;
-            text-align: center;
-            font-size: 1.5em;
-        }
+.newsArticleHead {
+    margin-top: 0;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.5em;
+}
+
         .newsArticle p:first-of-type {
             text-align: center;
             font-size: 1.2em;
             font-style: italic;
         }
 
+
 /*  Individual Artifacts
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#flickr {
-    display: none;
-}
-#newspaper {
-    display: none;
-}
-
-
-/* Media queries
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-

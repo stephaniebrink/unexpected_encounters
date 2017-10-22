@@ -16,18 +16,18 @@ $(document).ready(function() {
     
     // ----- ON CLICK: "DISCLAIMER" -----
     $('#disclaimerButton').click(function() {
-        $("#disclaimer").css("display","block");
+        $("#disclaimer").show();
     });
     
     // ----- ON CLICK: DISCLAIMER "OK" -----
     $('#disclaimerOk').click(function() {
-        $("#disclaimer").css("display","none");
+        $("#disclaimer").hide()
     });
     
     // ----- ON CLICK: "GOT IT" -----
-    $('#gotIt').click(function() {
-        $("#onboard").css("display","none");
-        $("#home").css("display","block");
+    $('#got-it').click(function() {
+        $("#onboard").fadeOut('fast');
+        $("#home").fadeIn('fast');
         
         // ----- FIND USER'S LOCATION -----
         // NOTE: this only works when viewing the file in your browser (i.e. file:///Volumes/Mactinosh etc...). 
@@ -68,12 +68,12 @@ $(document).ready(function() {
     });
     
     // ----- ABOUT BUTTON -----
-    $('#aboutButton').click(function() {
-        $("#about").css("display","block");
+    $('#about-link').click(function() {
+        $("#about").show();
     });
     
     $('#aboutBack').click(function() {
-        $("#about").css("display","none");
+        $("#about").hide();
     });
 
 	
@@ -83,7 +83,7 @@ $(document).ready(function() {
 	$('#find-places').click(function() {
         
         // Show loading screen
-        $("#loading").css("display","block");
+        $("#loading").fadeIn('fast');
 
 		var url = 'https://maps.googleapis.com/maps/api/js?key=' + mapKey + '&libraries=places&encoding=json&callback=?',
 			service,
@@ -168,10 +168,10 @@ $(document).ready(function() {
             }
             
             // Hide homepage
-            $("#home").css("display","none");
+            $("#home").fadeOut('fast');
             
             // Display Discovery page
-            $("#select").css("display","block");
+            $("#select").fadeIn('fast');
             
             // Hide loading screen
             loadComplete();
@@ -181,7 +181,7 @@ $(document).ready(function() {
             $('.place').click(function() {
                 
                 // Show loading screen
-                $("#loading").css("display","block");
+                $("#loading").fadeIn('fast');
                 
                 // Set place selection
                 var locQuery = $(this).html();
@@ -299,10 +299,10 @@ $(document).ready(function() {
                 }
 	            
 	            // Hide place selection page
-                $("#select").css("display","none");
+                $("#select").fadeOut('fast');
 
                 // Display Results page
-                $("#results").css("display","block");
+                $("#results").fadeIn('fast');
 
                 // Hide loading screen
                 loadComplete();
@@ -315,20 +315,20 @@ $(document).ready(function() {
                 if (pics == true) {
                     
                     // Hide place selection page
-                    $("#select").css("display","none");
+                    $("#select").fadeOut('fast');
                     
                     // Display Results page
-                    $("#results").css("display","block");
+                    $("#results").fadeIn('fast');
                     
                     loadComplete();
                     
                 // If there are no results at all
                 } else {
                     // Hide place selection page
-                    $("#select").css("display","none");
+                    $("#select").fadeOut('fast');
                     
                     // Show error message
-                    $("#locError").css("display","block");
+                    $("#locError").fadeIn('fast');
 
                     loadComplete();
                 }
@@ -342,17 +342,17 @@ $(document).ready(function() {
 
 	function loadComplete() {
 	    // Hide loading screen
-	    $("#loading").css("display","none");
+	    $("#loading").hide();
 	}
     
     // ----- NO RESULTS - BACK TO PLACE SELECTION -----
 
     $('#noresultsBack').click(function() {
 	    // Hide error message
-        $("#locError").css("display","none");
+        $("#locError").hide();
         
         // Show place selection page
-        $("#select").css("display","block");         
+        $("#select").show();        
 	});
 	
 }); // close document ready
