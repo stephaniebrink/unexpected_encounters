@@ -1,7 +1,7 @@
 /* TABLE OF CONTENTS
 
     Base styles
-    Landing
+    Launch
     About
     Navigation
     Loading
@@ -32,7 +32,7 @@ body {
 }
 
 
-/* Landing
+/* Launch
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #intro {
@@ -43,18 +43,32 @@ body {
     color: #fff;
 }
 
+#intro-container,
+#intro-row {
+    height: 100%;
+}
+
+#intro-row {
+    position: relative;
+}
+
 #intro-centre {
-    padding-top: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 #intro-centre:after {
     content: url(../images/Handdrawn/Launch-explosion-white.svg);
     position: absolute;
-    opacity: 0.2;
-    height: 100%;
-    top: 26%;
-    left: 3%;
-    width: 85%;
+    opacity: 0.15;
+    width: 90%;
+    max-width: 390px;
+    min-width: 280px;
+    top: 30%;
+    left: 46%;
+    transform: translate(-50%,-50%);
 }
 
 #logo img {
@@ -66,8 +80,11 @@ body {
 #powered {
     width: 10%;
     min-width: 80px;
-    max-width: 170px;
+    max-width: 150px;
 }
+
+/* Onboarding
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #onboard {
     height: 100vh;
