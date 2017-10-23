@@ -181,7 +181,7 @@ $(document).ready(function() {
             $('.place').click(function() {
                 
                 // Show loading screen
-                $("#loading").fadeIn('fast');
+                $("#discovering").fadeIn('fast');
                 
                 // Set place selection
                 var locQuery = $(this).html();
@@ -341,8 +341,9 @@ $(document).ready(function() {
 	// ----- API CALL COMPLETE -----
 
 	function loadComplete() {
-	    // Hide loading screen
+	    // Hide loading screens
 	    $("#loading").hide();
+	    $("#discovering").hide();
 	}
     
     // ----- NO RESULTS - BACK TO PLACE SELECTION -----

@@ -208,11 +208,19 @@ button,
     z-index: 1;
     height: 100vh;
     width: 100vw;
-    margin-left: -20px;
-    background-color: rgba(97,151,65,1);
-    color: #fff;
+    background-color: #fff;
     text-align: center;
 }
+    #compass {
+        width: 50%;
+    }
+        #compassNeedle {
+            animation: compassSpin 5s linear infinite;
+            transform-origin: 50% 50%; /* Chrome, Firefox behaves differently */
+        }
+    #discoveringGuy {
+            width: 50%;
+        }
 
 /*To be replaced with new loading animations*/
 #loader {
@@ -248,6 +256,18 @@ button,
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+@keyframes compassSpin {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(-60deg); }
+    40% { transform: rotate(20deg); }
+    60% { transform: rotate(-40deg); }
+    80% { transform: rotate(40deg); }
+    100% { transform: rotate(0deg); }
+}
+
+<g transform = "translate(100, 100) rotate(45 60 60)">
+
 
 @keyframes spinBack {
     0% { transform: rotate(0deg); }
