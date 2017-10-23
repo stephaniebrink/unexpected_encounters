@@ -215,44 +215,38 @@ button,
         width: 50%;
     }
         #compassNeedle {
-            -webkit-animation: compassSpin 5s linear infinite; /* Safari 4+ */
-            -moz-animation:    compassSpin 5s linear infinite; /* Fx 5+ */
-            -o-animation:      compassSpin 5s linear infinite; /* Opera 12+ */
-            animation:         compassSpin 5s linear infinite; /* IE 10+, Fx 29+ */
-            transform-origin: 50% 50%; /* Chrome, Firefox behaves differently */
+            /* note: SVG animations are not supported in Microsoft Edge - possibly others? */
+            -webkit-animation: compassSpin 5s linear infinite;
+            -moz-animation: compassSpin 5s linear infinite;
+            animation: compassSpin 5s linear infinite;
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
         }
-        @-webkit-keyframes compassSpin {
-            0% { transform: rotate(0deg); }
-            20% { transform: rotate(-60deg); }
-            40% { transform: rotate(20deg); }
-            60% { transform: rotate(-40deg); }
-            80% { transform: rotate(40deg); }
-            100% { transform: rotate(0deg); }
-        }
-        @-moz-keyframes compassSpin {
-            0% { transform: rotate(0deg); }
-            20% { transform: rotate(-60deg); }
-            40% { transform: rotate(20deg); }
-            60% { transform: rotate(-40deg); }
-            80% { transform: rotate(40deg); }
-            100% { transform: rotate(0deg); }
-        }
-        @-o-keyframes compassSpin {
-            0% { transform: rotate(0deg); }
-            20% { transform: rotate(-60deg); }
-            40% { transform: rotate(20deg); }
-            60% { transform: rotate(-40deg); }
-            80% { transform: rotate(40deg); }
-            100% { transform: rotate(0deg); }
-        }
-        @keyframes compassSpin {
-            0% { transform: rotate(0deg); }
-            20% { transform: rotate(-60deg); }
-            40% { transform: rotate(20deg); }
-            60% { transform: rotate(-40deg); }
-            80% { transform: rotate(40deg); }
-            100% { transform: rotate(0deg); }
-        }
+            @-webkit-keyframes compassSpin {
+                0%   { -webkit-transform: rotate(0deg); }
+                20%  { -webkit-transform: rotate(-60deg); }
+                40%  { -webkit-transform: rotate(20deg); }
+                60%  { -webkit-transform: rotate(-40deg); }
+                80%  { -webkit-transform: rotate(40deg); }
+                100% { -webkit-transform: rotate(0deg); }
+            }
+            @-moz-keyframes compassSpin {
+                0%   { -moz-transform: rotate(0deg); }
+                20%  { -moz-transform: rotate(-60deg); }
+                40%  { -moz-transform: rotate(20deg); }
+                60%  { -moz-transform: rotate(-40deg); }
+                80%  { -moz-transform: rotate(40deg); }
+                100% { -moz-transform: rotate(0deg); }
+            }
+            @keyframes compassSpin {
+                0%   { transform: rotate(0deg); }
+                20%  { transform: rotate(-60deg); }
+                40%  { transform: rotate(20deg); }
+                60%  { transform: rotate(-40deg); }
+                80%  { transform: rotate(40deg); }
+                100% { transform: rotate(0deg); }
+            }
     #discoveringGuy {
             width: 50%;
         }
