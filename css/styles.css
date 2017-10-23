@@ -215,8 +215,43 @@ button,
         width: 50%;
     }
         #compassNeedle {
-            animation: compassSpin 5s linear infinite;
+            -webkit-animation: compassSpin 5s linear infinite; /* Safari 4+ */
+            -moz-animation:    compassSpin 5s linear infinite; /* Fx 5+ */
+            -o-animation:      compassSpin 5s linear infinite; /* Opera 12+ */
+            animation:         compassSpin 5s linear infinite; /* IE 10+, Fx 29+ */
             transform-origin: 50% 50%; /* Chrome, Firefox behaves differently */
+        }
+        @-webkit-keyframes compassSpin {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(-60deg); }
+            40% { transform: rotate(20deg); }
+            60% { transform: rotate(-40deg); }
+            80% { transform: rotate(40deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @-moz-keyframes compassSpin {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(-60deg); }
+            40% { transform: rotate(20deg); }
+            60% { transform: rotate(-40deg); }
+            80% { transform: rotate(40deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @-o-keyframes compassSpin {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(-60deg); }
+            40% { transform: rotate(20deg); }
+            60% { transform: rotate(-40deg); }
+            80% { transform: rotate(40deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes compassSpin {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(-60deg); }
+            40% { transform: rotate(20deg); }
+            60% { transform: rotate(-40deg); }
+            80% { transform: rotate(40deg); }
+            100% { transform: rotate(0deg); }
         }
     #discoveringGuy {
             width: 50%;
@@ -257,16 +292,6 @@ button,
     100% { transform: rotate(360deg); }
 }
 
-@keyframes compassSpin {
-    0% { transform: rotate(0deg); }
-    20% { transform: rotate(-60deg); }
-    40% { transform: rotate(20deg); }
-    60% { transform: rotate(-40deg); }
-    80% { transform: rotate(40deg); }
-    100% { transform: rotate(0deg); }
-}
-
-<g transform = "translate(100, 100) rotate(45 60 60)">
 
 
 @keyframes spinBack {
