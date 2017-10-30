@@ -67,6 +67,8 @@ button,
     letter-spacing: 2px;
     width: 80%;
     height: 7rem;
+    margin: 0 auto;
+    display: block;
 }
 
 
@@ -175,8 +177,22 @@ button,
 /* Home
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#about-link {
-    cursor: pointer;
+#location-icon {
+    width: 10rem;
+    margin: 10rem auto 0;
+    display: block;
+}
+
+#find-places {
+    margin-top: 3rem;
+}
+
+#pointing-img {
+    width: 50%;
+    max-height: 8rem;
+    position: absolute;
+    bottom: -5px;
+    right: 0;
 }
 
 
@@ -190,13 +206,46 @@ button,
     position: fixed;
     top: 0;
     overflow: scroll;
+    z-index: 10;
 }
 
 
 /* Navigation
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+.nav {
+    position: fixed;
+    width: 100%;
+    padding: 2rem 0;
+    background: #fff;
+}
+    .back-link {
+        position: absolute;
+        display: inline;
+        left: 2rem;
+        top: 1.5rem;
+        font-size: 2em;
+        color: #000;
+        cursor: pointer;
+    }
+    .logo-small {
+        display: block;
+        height: 3rem;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+    .about-link {
+        position: absolute;
+        display: inline;
+        right: 2rem;
+        top: 2.5rem;
+        color: #000;
+        cursor: pointer;
+    }
 
+.afternav {
+    margin-top: 4rem;
+}
 
 /* Loading
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -212,10 +261,18 @@ button,
     text-align: center;
 }
     #compass {
-        width: 50%;
+        display: inline;
     }
+        #compassBase {
+            position: absolute;
+            height: 10rem;
+            width: 10rem;
+            margin-top: 10rem;
+        }
         #compassNeedle {
-            /* note: SVG animations are not supported in Microsoft Edge - possibly others? */
+            height: 10rem;
+            width: 10rem;
+            margin-top: 10rem;
             -webkit-animation: compassSpin 5s linear infinite;
             -moz-animation: compassSpin 5s linear infinite;
             animation: compassSpin 5s linear infinite;
@@ -223,6 +280,7 @@ button,
             -moz-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
         }
+
             @-webkit-keyframes compassSpin {
                 0%   { -webkit-transform: rotate(0deg); }
                 20%  { -webkit-transform: rotate(-60deg); }
@@ -247,51 +305,48 @@ button,
                 80%  { transform: rotate(40deg); }
                 100% { transform: rotate(0deg); }
             }
+        #findPlacesLoadingText {
+            margin-top: 2rem;
+        }
     #discoveringGuy {
-            width: 50%;
+            height: 10rem;
+            width: 100%;
+            margin-top: 10rem;
+            -webkit-animation: discoverSway 5s linear infinite;
+            -moz-animation: discoverSway 5s linear infinite;
+            animation: discoverSway 5s linear infinite;
+            -webkit-transform-origin: 50% 100%;
+            -moz-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+        }
+            @-webkit-keyframes discoverSway {
+                0%   { -webkit-transform: rotate(0deg); }
+                25%  { -webkit-transform: rotate(-25deg); }
+                50%  { -webkit-transform: rotate(0deg); }
+                75%  { -webkit-transform: rotate(25deg); }
+                100% { -webkit-transform: rotate(0deg); }
+            }
+            @-moz-keyframes discoverSway {
+                0%   { -moz-transform: rotate(0deg); }
+                25%  { -moz-transform: rotate(-25deg); }
+                50%  { -moz-transform: rotate(0deg); }
+                75%  { -moz-transform: rotate(25deg); }
+                100% { -moz-transform: rotate(0deg); }
+            }
+            @keyframes discoverSway {
+                0%   { transform: rotate(0deg); }
+                25%  { transform: rotate(-25deg); }
+                50%  { transform: rotate(0deg); }
+                75%  { transform: rotate(25deg); }
+                100% { transform: rotate(0deg); }
+            }
+    #load-artefacts {
+        margin-top: 2rem;
+    }
+        #loadingPlace {
+            font-weight: 600; 
         }
 
-/*To be replaced with new loading animations*/
-#loader {
-    position: relative;
-    margin: 20% auto 0;
-    width: 15vh;
-    height: 15vh;
-}
-
-#loader1 {
-    position: absolute;
-    border: 5px solid rgba(97,151,65,1);
-    border-top: 5px solid #fff;
-    border-radius: 50%;
-    width: 15vh;
-    height: 15vh;
-    animation: spin 1s linear infinite;
-}
-
-#loader2 {
-    position: absolute;
-    top: 2.5vh;
-    left: 2.5vh;
-    border: 5px solid rgba(97,151,65,1);
-    border-top: 5px solid #fff;
-    border-radius: 50%;
-    width: 10vh;
-    height: 10vh;
-    animation: spinBack 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-
-
-@keyframes spinBack {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
-}
 
 
 /* Select Place
@@ -299,6 +354,7 @@ button,
 
 .place {
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
     .place:hover {
@@ -312,7 +368,6 @@ button,
 .results {
     cursor: pointer;
 }
-
     .results:hover {
         background-color: lightgray;
     }
@@ -324,9 +379,8 @@ h2 {
     margin: 1em;
 }
 
-.troveImg {
-    display: inline-block;
-    max-width: 50%;
+.results-img {
+    max-width: 100%;
 }
 
 .newsArticle {

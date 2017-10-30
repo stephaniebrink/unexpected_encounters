@@ -29,7 +29,7 @@
 	
     
 	    <!-- ---------- Intro ---------- -->    
-	    <section id="intro" class="center">
+	    <section id="intro" class="center hide">
             <div id="intro-container" class="container full-height">
                 
                 <div id="intro-row" class="row full-height">
@@ -88,17 +88,27 @@
 	    <!-- ---------- Home ---------- -->    
 		<section id="home" class="hide">
             
-            <a id="about-link">About</a>
-		    
-		    <div class="row">
-			    <div class="eight columns">
+		    <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link home">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                    <a class="about-link">ABOUT</a>
+                </div>
+            </div>
+            
+		    <div class="row afternav">
+			    <div class="eight offset-by-two columns">
 			    	
 			    	<!-- Icon -->
-				    <div class="loc-icon"></div>
+				    <img id="location-icon" src="images/Location-icon.svg" />
 
 			    	<!-- Button -->					
                     <!--<a data-link="find-places" class="button" id="find-places">Find places nearby</a>-->
 				    <button id="find-places">Find places nearby</button>
+                    
+                    <!-- Pointing guy -->
+				    <img id="pointing-img" src="images/Little-guy-pointing-up.svg" />
                 </div>
 		    </div>
 		    
@@ -109,9 +119,17 @@
     
         <!-- ---------- About page ---------- -->    
 	    <section id="about" class="hide">
-	        <div class="row">
+            
+            <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link about">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                </div>
+            </div>
+            
+	        <div class="row afternav">
 	        	<div class="eight columns">
-                    <button id="aboutBack">Back</button>
                     <h2>About</h2>
                     
                     <h3>Why am I seeing these items?</h3>
@@ -132,12 +150,21 @@
     
         <!-- ---------- Error page ---------- -->    
 	    <section id="locError" class="hide">
-	        <div class="row">
+            
+            <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link error">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                    <a class="about-link">ABOUT</a>
+                </div>
+            </div>
+            
+	        <div class="row afternav">
 	        	<div class="eight columns">
-                    <!-- Example error text -->
-                    <p>Well this is embarassing, we can't find any images or </p>
+                    <h2>Oops</h2>
+                    <p>Well this is embarassing, we can't find anything related to <span id="errorPlace"></span>.</p>
                     <p>Why don't you take some pics and upload them to Trove so others can find them?</p>
-                    <button id="noresultsBack">Back</button>
                 </div>
 	        </div>
 	    </section>
@@ -146,47 +173,51 @@
 	    <!-- ---------- Loading: finding nearby places ---------- -->    
 	    <section id="loading" class="hide">
 	        <div class="row">
-	        	<div class="eight columns">
-			    	<!-- Compass animation -->
-				    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="compass" x="0px" y="0px" width="463.985px" height="463.985px" viewBox="19.007 18.008 463.985 463.985" enable-background="new 19.007 18.008 463.985 463.985" xml:space="preserve">
+	        	<div class="eight offset-by-two columns">
+                    <div id="compass">
+                        <!-- Compass animation -->
                         <!-- Compass base -->
-                        <path id="compassBase" fill="#303030" d="M251.3,18.008c-127.852,0-232.293,103.841-232.293,231.692S123.448,481.993,251.3,481.993
-                            c127.851,0,231.692-104.441,231.692-232.293S379.151,18.008,251.3,18.008z M260.293,465.584c0.385-1.001,0.61-2.128,0.61-3.398
-                            c0-10.805,0-21.009,0-31.813c-0.6-12.006-19.207-12.006-19.207,0c0,10.804,0,21.008,0,31.813c0,1.271,0.226,2.397,0.61,3.398
-                            c-112.271-4.657-203.125-96.027-206.951-208.501c0.864,0.267,1.813,0.42,2.86,0.42c10.804,0,21.608,0,32.413,0
-                            c12.005,0,12.005-19.207,0-19.207c-10.805,0-21.609,0-32.413,0c-0.992,0-1.894,0.142-2.722,0.383
-                            C41.09,127.997,130.501,38.615,241.901,33.83c-0.133,0.681-0.205,1.408-0.205,2.185c0,11.404,0,22.209,0,33.613
-                            c0,12.005,19.207,12.005,19.207,0c0-11.404,0-22.209,0-33.613c-0.037-0.777-0.144-1.506-0.309-2.187
-                            c110.986,4.759,200.983,94.257,206.519,205.05c-0.984-0.367-2.088-0.582-3.328-0.582c-10.805,0-21.009,0-31.813,0
-                            c-12.604,0-12.604,19.207,0,19.207c10.805,0,21.009,0,31.813,0c1.3,0,2.45-0.236,3.468-0.638
-                            C463.536,369.439,372.637,460.924,260.293,465.584z"/>
-                        <!-- Compass needle -->
-                        <path id="compassNeedle" fill="#303030" d="M239.366,351.279c-0.611,0-0.611,0-0.611,0c-2.446,0-9.172-1.834-12.229-12.229l-14.064-45.25
-                            c-1.835-6.114-9.173-12.841-14.676-14.676l-44.638-14.675c-10.396-3.669-11.618-9.784-12.23-12.842
-                            c0-2.445,0.612-9.172,9.784-14.063l172.437-86.219c9.784-4.891,14.676-1.834,17.122,0.612c2.445,2.445,5.503,7.949,0.611,17.122
-                            l-88.054,172.437C248.538,350.056,242.424,351.279,239.366,351.279z M242.424,336.603L242.424,336.603L242.424,336.603z
-                             M161.097,250.385l40.969,13.453c11.007,3.668,21.402,14.675,25.071,25.682l12.841,41.58l82.55-162.042L161.097,250.385z
-                             M155.594,248.551L155.594,248.551L155.594,248.551z"/>
-                    </svg>
-					<p>Finding places near you...</p>
-	        	</div>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="compassBase" x="0px" y="0px" width="463.985px" height="463.985px" viewBox="19.007 18.008 463.985 463.985" enable-background="new 19.007 18.008 463.985 463.985" xml:space="preserve">
+                            <path fill="#303030" d="M251.3,18.008c-127.852,0-232.293,103.841-232.293,231.692S123.448,481.993,251.3,481.993
+                                c127.851,0,231.692-104.441,231.692-232.293S379.151,18.008,251.3,18.008z M260.293,465.584c0.385-1.001,0.61-2.128,0.61-3.398
+                                c0-10.805,0-21.009,0-31.813c-0.6-12.006-19.207-12.006-19.207,0c0,10.804,0,21.008,0,31.813c0,1.271,0.226,2.397,0.61,3.398
+                                c-112.271-4.657-203.125-96.027-206.951-208.501c0.864,0.267,1.813,0.42,2.86,0.42c10.804,0,21.608,0,32.413,0
+                                c12.005,0,12.005-19.207,0-19.207c-10.805,0-21.609,0-32.413,0c-0.992,0-1.894,0.142-2.722,0.383
+                                C41.09,127.997,130.501,38.615,241.901,33.83c-0.133,0.681-0.205,1.408-0.205,2.185c0,11.404,0,22.209,0,33.613
+                                c0,12.005,19.207,12.005,19.207,0c0-11.404,0-22.209,0-33.613c-0.037-0.777-0.144-1.506-0.309-2.187
+                                c110.986,4.759,200.983,94.257,206.519,205.05c-0.984-0.367-2.088-0.582-3.328-0.582c-10.805,0-21.009,0-31.813,0
+                                c-12.604,0-12.604,19.207,0,19.207c10.805,0,21.009,0,31.813,0c1.3,0,2.45-0.236,3.468-0.638
+                                C463.536,369.439,372.637,460.924,260.293,465.584z"/>
+                        </svg>
+                         <!-- Compass needle -->
+                        <svg id="compassNeedle" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="compass" x="0px" y="0px" width="463.985px" height="463.985px" viewBox="19.007 18.008 463.985 463.985" enable-background="new 19.007 18.008 463.985 463.985" xml:space="preserve">
+                            <path id="compassNeedle" fill="#303030" d="M239.366,351.279c-0.611,0-0.611,0-0.611,0c-2.446,0-9.172-1.834-12.229-12.229l-14.064-45.25
+                                c-1.835-6.114-9.173-12.841-14.676-14.676l-44.638-14.675c-10.396-3.669-11.618-9.784-12.23-12.842
+                                c0-2.445,0.612-9.172,9.784-14.063l172.437-86.219c9.784-4.891,14.676-1.834,17.122,0.612c2.445,2.445,5.503,7.949,0.611,17.122
+                                l-88.054,172.437C248.538,350.056,242.424,351.279,239.366,351.279z M242.424,336.603L242.424,336.603L242.424,336.603z
+                                 M161.097,250.385l40.969,13.453c11.007,3.668,21.402,14.675,25.071,25.682l12.841,41.58l82.55-162.042L161.097,250.385z
+                                 M155.594,248.551L155.594,248.551L155.594,248.551z"/>
+                        </svg>
+                    </div>
+                    <p id="findPlacesLoadingText">Finding places near you...</p>
+                </div>
 	        </div>
 	    </section>
 	
 
-        <!-- ---------- Nav for following screens ---------- -->  
-		<!-- should the nav be copy + pasted in each section, or just not hidden? -->
-		<div class="row hide" id="nav">
-			<div class="twelve columns">
-				<p id="back"><a data-link="">Back</a></p>
-				<p id="logo-icon"><a data-link="home">Unexpected Discoveries Home</a></p>
-		    </div>
-		</div>
-
-
 	    <!-- ---------- Make a discovery ---------- -->    
 		<section id="select" class="hide">
-		    <div class="row">
+            
+            <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link select">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                    <a class="about-link">ABOUT</a>
+                </div>
+            </div>
+            
+		    <div class="row afternav">
 			    <div class="twelve columns">
 					<h2>Make a discovery</h2>
 					
@@ -204,7 +235,7 @@
 	    <!-- ---------- Loading: discovering artifacts ---------- -->    
 	    <section id="discovering" class="hide">
 	        <div class="row">
-	        	<div class="eight columns">
+	        	<div class="eight offset-by-two columns">
 
 			    	<!-- Loading screen -->
 				    <svg id="discoveringGuy" x="0px" y="0px" width="489.79px" height="367.042px" viewBox="4.99 116.118 489.79 367.042" enable-background="new 4.99 116.118 489.79 367.042" xml:space="preserve">
@@ -235,7 +266,7 @@
                     </svg>
 				    
 				    <!-- Append place name to this p tag -->
-					<p id="load-artefacts">Discovering artefacts about </p>
+					<p id="load-artefacts">Discovering artefacts about<br/><span id="loadingPlace"></span></p>
 					
 	        	</div>
 	        </div>
@@ -244,12 +275,19 @@
 	
 	    <!-- ---------- Results list / grid ---------- -->    
 	    <section id="results" class="hide">
-	        <div class="row">
+            
+            <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link results">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                    <a class="about-link">ABOUT</a>
+                </div>
+            </div>
+            
+	        <div class="row afternav">
 	        	<div class="twelve columns" id="resultsList">
 		        
-			        <!-- Icon and place name -->
-					<img src="" class="loc-marker-icon">
-                    
                     <!-- Placename gets appended here -->
                     <!--
                     Placename structure:
@@ -271,6 +309,16 @@
 	
 	    <!-- ---------- Individual artifact: Flickr ---------- -->
 	    <section id="flickr" class="hide">
+            
+            <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                    <a class="about-link">ABOUT</a>
+                </div>
+            </div>
+            
 	        <div class="row">
 	        	<div class="twelve columns">
 		        
@@ -296,6 +344,16 @@
 	
 	    <!-- ---------- Individual artifact: Newspaper ---------- -->
 		<section id="newspaper" class="hide">
+            
+            <!-- Navigation -->
+            <div class="row">
+                <div class="nav">
+                    <a class="back-link">&lt;</a>
+                    <img class="logo-small" src="images/UD-logo-black.svg" />
+                    <a class="about-link">ABOUT</a>
+                </div>
+            </div>
+            
 	        <div class="row">
 	        	<div class="ten columns">
 		        

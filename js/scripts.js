@@ -67,14 +67,45 @@ $(document).ready(function() {
         };
     });
     
+    // ----- NAVIGATION -----
+    
+    // ----- HOME BUTTON -----
+    $('.logo-small').click(function() {
+        $("#home").show();
+        $("#about").hide();
+    });
+    
     // ----- ABOUT BUTTON -----
-    $('#about-link').click(function() {
+    $('.about-link').click(function() {
         $("#about").show();
     });
     
-    $('#aboutBack').click(function() {
+    // ----- BACK BUTTON -----
+    // From home page
+    $('.back-link.home').click(function() {
+        $("#home").hide();
+        $("#onboard").show();
+    });
+    // From about page
+    $('.back-link.about').click(function() {
         $("#about").hide();
     });
+    // From select page
+    $('.back-link.select').click(function() {
+        $("#home").show();
+        $("#select").hide();
+    });
+    // From results page
+    $('.back-link.results').click(function() {
+        $("#select").show();
+        $("#results").hide();
+    });
+    // From error page
+    $('.back-link.error').click(function() {
+        $("#locError").hide();
+        $("#select").show();
+    });
+
 
 	
 	// ----- GOOGLE MAP API: PLACES LIBRARY -----
@@ -84,6 +115,9 @@ $(document).ready(function() {
         
         // Show loading screen
         $("#loading").fadeIn('fast');
+        
+        // Remove any previous places
+        $("#places").empty();
 
 		var url = 'https://maps.googleapis.com/maps/api/js?key=' + mapKey + '&libraries=places&encoding=json&callback=?',
 			service,
@@ -159,7 +193,7 @@ $(document).ready(function() {
 					if (desiredPlace != '') {
 						
 						// Append place name to page
-						$('#places').append('<p class="place">' + desiredPlace + '</p>');
+						$('#places').append('<button class="place">' + desiredPlace + '</button>');
 						
 						// Reset desired place  
 						desiredPlace = '';
@@ -180,17 +214,25 @@ $(document).ready(function() {
             // K: I think this function needs to be here, AFTER places are appended
             $('.place').click(function() {
                 
-                // Show loading screen
-                $("#discovering").fadeIn('fast');
-                
                 // Set place selection
                 var locQuery = $(this).html();
                 
                 // Parse place selection to remove html punctuation code (eg. turn &amp; into &)
-                var parsedLocQuery = jQuery.parseHTML(locQuery);
+                var parsedLocQuery = $.parseHTML(locQuery);
                 var place = parsedLocQuery[0].data;
                 
                 console.log( "Place selected: " + place );
+                
+                // Remove any previously appended placenames
+                $("#loadingPlace").empty();
+                // Append placename to error page
+                $("#loadingPlace").append(parsedLocQuery);
+                
+                // Show loading screen
+                $("#discovering").fadeIn('fast');
+                
+                // Remove any previous results
+                $("#resultsList").empty();
                 
                 // Append place name to results page
                 $("#resultsList").append('<h2 id="place-name">' + place + '</h2>')
@@ -273,6 +315,8 @@ $(document).ready(function() {
 	    
 	    var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20date:[*%20TO%201900]&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
 	    
+        console.log("Newspaper URL: " + url);
+        
 	    $.getJSON(url, function(data) {
 	        
 	        // Log data
@@ -327,6 +371,10 @@ $(document).ready(function() {
                     // Hide place selection page
                     $("#select").fadeOut('fast');
                     
+                    // Remove any previously appended placenames
+                    $("#errorPlace").empty();
+                    // Append placename to error page
+                    $("#errorPlace").append(decodeURIComponent(place));
                     // Show error message
                     $("#locError").fadeIn('fast');
 
