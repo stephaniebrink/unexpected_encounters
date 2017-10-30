@@ -337,9 +337,11 @@ $(document).ready(function() {
 		                pdfUrl = 'http://trove.nla.gov.au/newspaper/rendition/nla.news-page' + pageNum + '.pdf',
 	                	newsHeading = articleArray[i].heading,
 						newsText = articleArray[i].articleText;
+                    
+                    var randNews = randomInt(1,10);
 	                
 	                // Append to page
-                    $("#resultsList").append('<div class="results"><img src="images/newspaper01.jpg" class="results-img"><h3 class="results-title">' + newsHeading + '</h3></div>')
+                    $("#resultsList").append('<div class="results"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="results-img"><h3 class="results-title">' + newsHeading + '</h3></div>')
                 }
 	            
 	            // Hide place selection page
@@ -405,3 +407,8 @@ $(document).ready(function() {
 	});
 	
 }); // close document ready
+
+// GENERATE RANDOM NUMBER - WHOLE
+function randomInt(minNum,maxNum) {
+    return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+};
