@@ -12,16 +12,16 @@ $(document).ready(function() {
 
     // ----- INTRO PAGE FADEOUT -----
     $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
-    $('#onboard').fadeIn('fast').delay(3000);
+    $('#onboard').delay(2000).fadeIn('slow');
     
     // ----- ON CLICK: "DISCLAIMER" -----
     $('#disclaimerButton').click(function() {
-        $("#disclaimer").show();
+        $("#disclaimer").addClass('show');
     });
     
     // ----- ON CLICK: DISCLAIMER "OK" -----
     $('#disclaimerOk').click(function() {
-        $("#disclaimer").hide()
+        $("#disclaimer").addClass('hide');
     });
     
     // ----- ON CLICK: "GOT IT" -----
@@ -31,8 +31,6 @@ $(document).ready(function() {
         
         // ----- FIND USER'S LOCATION -----
         // NOTE: this only works when viewing the file in your browser (i.e. file:///Volumes/Mactinosh etc...). 
-        // We may need to see if we can get the user's location using the Google Maps API instead
-        // Because otherwise Typekit won't work.
 
         if (navigator.geolocation) {
             console.log(navigator.geolocation);
@@ -71,39 +69,39 @@ $(document).ready(function() {
     
     // ----- HOME BUTTON -----
     $('.logo-small').click(function() {
-        $("#home").show();
-        $("#about").hide();
+        $("#home").fadeIn('fast');
+        $("#about").fadeOut('fast');
     });
     
     // ----- ABOUT BUTTON -----
     $('.about-link').click(function() {
-        $("#about").show();
+        $("#about").fadeIn('fast');
     });
     
     // ----- BACK BUTTON -----
     // From home page
     $('.back-link.home').click(function() {
-        $("#home").hide();
-        $("#onboard").show();
+        $("#home").fadeOut('fast');
+        $("#onboard").fadeIn('fast');
     });
     // From about page
     $('.back-link.about').click(function() {
-        $("#about").hide();
+        $("#about").fadeOut('fast');
     });
     // From select page
     $('.back-link.select').click(function() {
-        $("#home").show();
-        $("#select").hide();
+        $("#home").fadeIn('fast');
+        $("#select").fadeOut('fast');
     });
     // From results page
     $('.back-link.results').click(function() {
-        $("#select").show();
-        $("#results").hide();
+        $("#select").fadeIn('fast');
+        $("#results").fadeOut('fast');
     });
     // From error page
     $('.back-link.error').click(function() {
-        $("#locError").hide();
-        $("#select").show();
+        $("#locError").fadeOut('fast');
+        $("#select").fadeIn('fast');
     });
 
 
@@ -115,6 +113,7 @@ $(document).ready(function() {
         
         // Show loading screen
         $("#loading").fadeIn('fast');
+        $("#home").fadeOut('fast');
         
         // Remove any previous places
         $("#places").empty();
@@ -200,11 +199,8 @@ $(document).ready(function() {
 					}
 				}
             }
-            
-            // Hide homepage
-            $("#home").fadeOut('fast');
-            
-            // Display Discovery page
+                        
+            // Display discovery page
             $("#select").fadeIn('fast');
             
             // Hide loading screen
@@ -225,6 +221,7 @@ $(document).ready(function() {
                 
                 // Remove any previously appended placenames
                 $("#loadingPlace").empty();
+                
                 // Append placename to error page
                 $("#loadingPlace").append(parsedLocQuery);
                 
@@ -387,28 +384,28 @@ $(document).ready(function() {
 	    });
 	}
 	
-	
 	// ----- API CALL COMPLETE -----
 
 	function loadComplete() {
 	    // Hide loading screens
-	    $("#loading").hide();
-	    $("#discovering").hide();
+	    $("#loading").fadeOut('fast');
+	    $("#discovering").fadeOut('fast');
 	}
     
     // ----- NO RESULTS - BACK TO PLACE SELECTION -----
 
     $('#noresultsBack').click(function() {
 	    // Hide error message
-        $("#locError").hide();
+        $("#locError").fadeOut('hide');
         
         // Show place selection page
-        $("#select").show();        
+        $("#select").fadeIn('show');        
 	});
 	
+	// ----- GENERATE RANDOM WHOLE NUMBER -----
+	
+	function randomInt(minNum,maxNum) {
+	    return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+	};
+	
 }); // close document ready
-
-// GENERATE RANDOM NUMBER - WHOLE
-function randomInt(minNum,maxNum) {
-    return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
-};

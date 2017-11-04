@@ -17,45 +17,42 @@
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+* {
+    box-sizing: border-box; }
+
 html, body {
-    height: 100%;
-}
+    height: 100%; }
 
 body {
     margin: 0;
     padding: 0;
     background-color: #fff;
-    color: #000;
-    font-family: 'mr-eaves-xl-modern', sans-serif;
-    font-weight: 300; /* book: 300, regular: 400, bold: 700 */
-}
-
-* {
-    box-sizing: border-box;
-}
+    color: #303030;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300; /* light: 300, regular: 400 */ }
 
 /* to extend all to the height and width of the screen */
 section {
     height: 100%;
-    width: 100%;
-}
+    width: 100%; }
 
-/* quick way of hiding everything */
 .hide {
     display: none;
-}
+/*     opacity: 0; */ }
+    
+.show {
+    display: block;
+/*     opacity: 1; */ }
 
 /* quick way of centering divs holding content to be centered */
 .center {
-    text-align: center;
-}
+    text-align: center; }
 
 /* quick way to give an element a full height */
 .full-height {
-    height: 100%;
-}
+    height: 100%; }
 
-/* to style all the buttons the same */
 button,
 .button {
     cursor: pointer;
@@ -69,7 +66,13 @@ button,
     height: 7rem;
     margin: 0 auto;
     display: block;
-}
+    font-weight: 400; }
+
+.bold {
+	font-weight: 400; }
+	
+a {
+	color: rgba(97,151,65,1); }
 
 
 /* Launch
@@ -174,40 +177,52 @@ button,
 }
 
 
+
+
 /* Home
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#location-icon {
-    width: 10rem;
-    margin: 10rem auto 0;
-    display: block;
-}
+.icons-div {
+	margin-bottom: 2rem; }
+	
+	.icons {
+		display: inline-block;
+		left: 50%;
+		transform: translateX(-50%);
+		position: relative;
+		width: 70%;
+		vertical-align: bottom; }
 
-#find-places {
-    margin-top: 3rem;
-}
+	/* positioning needs to be fixed - not sure how to center it correctly */
+	#location-icon {
+	    width: 7rem; 
+		transform: translateX(-150%); }
 
 #pointing-img {
-    width: 50%;
-    max-height: 8rem;
+    width: 55%;
+    max-height: 11rem;
     position: absolute;
-    bottom: -5px;
-    right: 0;
-}
+    bottom: -10px;
+    right: 0; }
 
 
 /* About
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #about {
-    background-color: rgba(97,151,65,1);
-    color: #fff;
+    background: #fff;
     height: 100vh;
     position: fixed;
     top: 0;
     overflow: scroll;
-    z-index: 10;
-}
+    z-index: 10; }
+    
+    #about .afternav  {
+        width: 90%;
+	    margin: 8rem 5%; }
+    
+    #about .afternav p {
+	    margin-bottom: 3rem; }
 
 
 /* Navigation
@@ -216,36 +231,61 @@ button,
 .nav {
     position: fixed;
     width: 100%;
-    padding: 2rem 0;
     background: #fff;
-}
+    height: 5.5rem;
+    top: 0; }
+    
     .back-link {
         position: absolute;
-        display: inline;
+        display: inline-block;
         left: 2rem;
-        top: 1.5rem;
         font-size: 2em;
-        color: #000;
+        color: #303030;
         cursor: pointer;
-    }
-    .logo-small {
-        display: block;
+        font-weight: 400; }
+    
+    .logo {
         height: 3rem;
         margin: 0 auto;
         cursor: pointer;
-    }
+        top: 2.5rem;
+        left: 2.5rem; }
+        
+    .logo-small {
+        background: url(../images/UD-logo-black.svg) no-repeat center center;
+        background-size: 95%;
+        text-indent: -9999px;
+		font-size: 0;
+		width: 50px;
+        height: 100%;
+        margin: 0 auto;
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%); }
+		
     .about-link {
         position: absolute;
         display: inline;
-        right: 2rem;
+        right: 2.5rem;
         top: 2.5rem;
-        color: #000;
+        font-size: .95em;
         cursor: pointer;
-    }
+        font-weight: 400;
+        color: #303030;
+        letter-spacing: 0.06em;
+        text-transform: uppercase; }
 
 .afternav {
-    margin-top: 4rem;
-}
+    margin-top: 8rem; }
+
+.main-row {
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%; }
+
 
 /* Loading
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -374,10 +414,17 @@ button,
 
 h2 {
     text-align: center;
-    color: #b3b4b4;
-    font-size: 3em;
-    margin: 1em;
-}
+    color: #303030;
+    font-size: 1.3em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 1.5em; }
+
+h3 {
+    font-size: 1.1em;
+    font-weight: 400;
+    letter-spacing: 0.02em; }
 
 .results-img {
     max-width: 100%;

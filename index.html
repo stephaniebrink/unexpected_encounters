@@ -11,10 +11,9 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <!-- Typekit
+    <!-- Google Font
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
-    <script src="https://use.typekit.net/ysa3sua.js"></script>
-	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
 
 	<!-- CSS
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
@@ -22,7 +21,12 @@
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/styles.css">
     
+    <!-- Favicon
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="icon" type="image/png" href="images/favicon.png">
+    
     <!-- NEWSPAPER IMAGE ATTRIBUTION
+	–––––––––––––––––––––––––––––––––––––––––––––––––– 
     The newspaper images are selected randomly from 10 predetermined newspaper images.
     They do not correspond to the referenced article.
     Image citations:
@@ -35,16 +39,11 @@
     (1883, November 29). Tasmanian News (Hobart, Tas. : 1883 - 1911), p. 2. Retrieved October 30, 2017, from http://nla.gov.au/nla.news-page19996801
     (1842, November 2). The Sydney Morning Herald (NSW : 1842 - 1954), p. 1. Retrieved October 30, 2017, from http://nla.gov.au/nla.news-page1521771
     (1858, July 17). The South Australian Advertiser (Adelaide, SA : 1858 - 1889), p. 2. Retrieved October 30, 2017, from http://nla.gov.au/nla.news-page3712
-    (1867, August 8). Queanbeyan Age (NSW : 1867 - 1904), p. 4. Retrieved October 30, 2017, from http://nla.gov.au/nla.news-page4533038
-	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    
-    
+    (1867, August 8). Queanbeyan Age (NSW : 1867 - 1904), p. 4. Retrieved October 30, 2017, from http://nla.gov.au/nla.news-page4533038 -->
+	
 </head>
     
 <body>
-	
-	
-    
 	    <!-- ---------- Intro ---------- -->    
 	    <section id="intro" class="center hide">
             <div id="intro-container" class="container full-height">
@@ -69,15 +68,17 @@
                     <div class="eight columns offset-by-two center">
                         <img src="images/handdrawn/say-what.svg" alt="">
                         <p>Unexpected Discoveries searches through millions of items to show you images and historical newspaper articles about wherever you are in Australia.</p>
-                        <p>Go ahead, let’s find places near you and get discovering!</p>
+                        <p class="bold">Go ahead, let’s find places near you and get discovering!</p>
                     </div>
                 </div>
 
-              <!-- <div class="row">
+<!--
+				<div class="row">
                     <div class="six columns">
                         <button id="disclaimerButton">Disclaimer</button>
                     </div>
-               </div>-->
+            	</div>
+-->
 
                 <!-- Button -->
                 <div class="row">
@@ -106,31 +107,31 @@
 		<section id="home" class="hide">
             
 		    <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
-                    <a class="back-link home">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                    <a class="about-link">ABOUT</a>
-                </div>
+            <div class="row nav">
+                    <img class="logo back-link home" src="images/Unexpected-Discoveries-logo-black.svg">
+                    <a class="about-link">About</a>
             </div>
             
 		    <div class="row afternav">
-			    <div class="eight offset-by-two columns">
-			    	
-			    	<!-- Icon -->
-				    <img id="location-icon" src="images/Location-icon.svg" />
-
-			    	<!-- Button -->					
-                    <!--<a data-link="find-places" class="button" id="find-places">Find places nearby</a>-->
-				    <button id="find-places">Find places nearby</button>
-                    
-                    <!-- Pointing guy -->
-				    <img id="pointing-img" src="images/Little-guy-pointing-up.svg" />
-                </div>
+			    <div class="row main-row">
+					    <div class="six columns offset-by-three">
+				    	
+				    	<!-- Icons -->
+				    	<div class="icons-div">
+					    	<img class="icons" id="arrows-icon" src="images/Handdrawn/Arrows-pointing-everywhere.svg">
+							<img id="location-icon" src="images/Location-icon.svg" />
+				    	</div>
+	
+				    	<!-- Button -->					
+					    <button id="find-places">Find places nearby</button>
+	                    <img class="icons" src="images/Handdrawn/Grey-underline-home.svg">
+					</div>
+			    </div>
+			    
+			    <!-- Pointing guy -->
+				<img id="pointing-img" src="images/Little-guy-pointing-up.svg" />
 		    </div>
-		    
 		    <div id="map"></div>
-		    
 	    </section>
         
     
@@ -138,29 +139,24 @@
 	    <section id="about" class="hide">
             
             <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
-                    <a class="back-link about">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                </div>
+            <div class="row nav">
+                <a class="back-link about">&lt;</a>
+                <p class="logo-small">Home</p>
             </div>
             
 	        <div class="row afternav">
-	        	<div class="eight columns">
+	        	<div class="eight columns offset-by-two">
                     <h2>About</h2>
                     
                     <h3>Why am I seeing these items?</h3>
-                    <p>Unexpected Discoveries uses your location to try to find items related to places near you. Unfortunately, this automated process doesn’t always get it right. Sometimes you might see items that aren’t quite about places near you, but might be about something with a similar name.</p>
-                    <p>We hope that you delight in whatever unexpected discoveries you make!</p>
+                    <p>Unexpected Discoveries uses your location to try to find items related to places near you. Unfortunately, this automated process doesn’t always get it right. Sometimes you might see items that aren’t quite about places near you, but might be about something with a similar name. We hope that you delight in whatever unexpected discoveries you make!</p>
                     
                     <h3>Where are these items from?</h3>
-                    <p>All the pictures and newspaper articles you see in Unexpected Discoveries are from Trove, a service provided by the National Library of Australia that brings together collections of items from all around Australia.</p>
-                    <p>Trove can connect you to hundreds of millions of items and Unexpected Discoveries accesses a selection of these.</p>
+                    <p>All the pictures and newspaper articles you see in Unexpected Discoveries are from Trove, a service provided by the National Library of Australia that brings together collections of items from all around Australia. Trove can connect you to hundreds of millions of items and Unexpected Discoveries accesses a selection of these.</p>
                     
                     <h3>How can I get involved?</h3>
-                    <p>Trove and Unexpected Discoveries are made even better by user contributions!</p>
-                    <p>Find out how you can <a href="">upload your own images to Trove</a> or help <a href="">correct newspaper text</a> that hasn’t been translated properly.</p>
-	        	</div>
+                    <p>Trove and Unexpected Discoveries are made even better by user contributions! Find out how you can <a href="">upload your own images to Trove</a> or help <a href="">correct newspaper text</a> that hasn’t been translated properly.</p>
+			    </div>
 	        </div>
 	    </section>
         
@@ -169,28 +165,29 @@
 	    <section id="locError" class="hide">
             
             <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
+            <div class="row nav">
                     <a class="back-link error">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                    <a class="about-link">ABOUT</a>
+                <p class="logo-small">Home</p>
+                    <a class="about-link">About</a>
                 </div>
             </div>
             
 	        <div class="row afternav">
-	        	<div class="eight columns">
-                    <h2>Oops</h2>
-                    <p>Well this is embarassing, we can't find anything related to <span id="errorPlace"></span>.</p>
-                    <p>Why don't you take some pics and upload them to Trove so others can find them?</p>
-                </div>
+			    <div class="row main-row">
+		        	<div class="eight columns">
+	                    <h2>Oops</h2>
+	                    <p>Well this is embarrassing, we can't find anything related to <span id="errorPlace"></span>.</p>
+	                    <p>Why don't you take some pics and upload them to Trove so others can find them?</p>
+	                </div>
+			    </div>
 	        </div>
 	    </section>
 	
 	
 	    <!-- ---------- Loading: finding nearby places ---------- -->    
 	    <section id="loading" class="hide">
-	        <div class="row">
-	        	<div class="eight offset-by-two columns">
+	        <div class="row main-row">
+	        	<div class="eight columns offset-by-two">
                     <div id="compass">
                         <!-- Compass animation -->
                         <!-- Compass base -->
@@ -226,11 +223,10 @@
 		<section id="select" class="hide">
             
             <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
+            <div class="row nav">
                     <a class="back-link select">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                    <a class="about-link">ABOUT</a>
+					<p class="logo-small">Home</p>
+                    <a class="about-link">About</a>
                 </div>
             </div>
             
@@ -251,8 +247,8 @@
 	
 	    <!-- ---------- Loading: discovering artifacts ---------- -->    
 	    <section id="discovering" class="hide">
-	        <div class="row">
-	        	<div class="eight offset-by-two columns">
+	        <div class="row main-row">
+	        	<div class="eight columns offset-by-two">
 
 			    	<!-- Loading screen -->
 				    <svg id="discoveringGuy" x="0px" y="0px" width="489.79px" height="367.042px" viewBox="4.99 116.118 489.79 367.042" enable-background="new 4.99 116.118 489.79 367.042" xml:space="preserve">
@@ -294,11 +290,10 @@
 	    <section id="results" class="hide">
             
             <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
+            <div class="row nav">
                     <a class="back-link results">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                    <a class="about-link">ABOUT</a>
+					<p class="logo-small">Home</p>
+                    <a class="about-link">About</a>
                 </div>
             </div>
             
@@ -328,11 +323,10 @@
 	    <section id="flickr" class="hide">
             
             <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
+            <div class="row nav">
                     <a class="back-link">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                    <a class="about-link">ABOUT</a>
+					<p class="logo-small">Home</p>
+                    <a class="about-link">About</a>
                 </div>
             </div>
             
@@ -363,11 +357,10 @@
 		<section id="newspaper" class="hide">
             
             <!-- Navigation -->
-            <div class="row">
-                <div class="nav">
+            <div class="row nav">
                     <a class="back-link">&lt;</a>
-                    <img class="logo-small" src="images/UD-logo-black.svg" />
-                    <a class="about-link">ABOUT</a>
+					<p class="logo-small">Home</p>
+                    <a class="about-link">About</a>
                 </div>
             </div>
             
