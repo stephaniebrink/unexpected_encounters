@@ -227,6 +227,7 @@ $(document).ready(function() {
                 
                 // Remove any previous results
                 $(".all-results").empty();
+                $("#place-name").empty();
                 
                 // Append place name to results page
                 $("#place-name").append(place);
@@ -287,7 +288,7 @@ $(document).ready(function() {
 	                // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
 	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution;
                     var versionTitle = workArray[i].title;
-	                $(".all-results").append('<div class="result"><img src="' + versionImg + '" class="result-img"><h3 class="result-title">' + versionTitle + '</h3></div>');
+	                $(".all-results").append('<div class="result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3></div>');
                 }
 	            
                 // Retrieve newspaper article data from Trove ('true' indicates there are pic results)

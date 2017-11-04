@@ -73,7 +73,7 @@ button,
     background-color: #fff;
     border: #619741 2.5px solid;
     font-size: 1.5rem;
-    letter-spacing: 2px;
+    letter-spacing: .1em;
     width: 80%;
     height: 7rem;
     margin: 0 auto;
@@ -193,6 +193,9 @@ a {
 	#location-icon {
 	    width: 7rem; 
 		transform: translateX(-150%); }
+
+#find-places {
+	width: 70%; }
 
 #pointing-img {
     width: 55%;
@@ -412,7 +415,6 @@ a {
 	    overflow: hidden; }
 	    
 	.result-img {
-	    background-size: cover;
 	    width: 100%;
 	    margin: 0;
 	    padding: 0; }
@@ -427,8 +429,9 @@ a {
 	    background-color: rgba(48,48,48,0.85);
 	    padding: 10px 20px;
 	    position: absolute;
-	    bottom: -15px;
-	    font-weight: 500; }
+	    bottom: 0px;
+	    font-weight: 500;
+	    margin-bottom: 0; }
     
     #place-name {
 	    display: inline-block; }
