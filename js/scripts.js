@@ -104,7 +104,6 @@ $(document).ready(function() {
         $("#select").fadeIn('fast');
     });
 
-
 	
 	// ----- GOOGLE MAP API: PLACES LIBRARY -----
 	// Attribution policies can be found here: https://developers.google.com/places/web-service/policies
@@ -121,8 +120,6 @@ $(document).ready(function() {
 		var url = 'https://maps.googleapis.com/maps/api/js?key=' + mapKey + '&libraries=places&encoding=json&callback=?',
 			service,
 			map;
-			
-			console.log('find places clicked');
 			
 		// Search for nearby places
 		$.getJSON(url, function(data) {
@@ -220,19 +217,19 @@ $(document).ready(function() {
                 console.log( "Place selected: " + place );
                 
                 // Remove any previously appended placenames
-                $("#loadingPlace").empty();
+                $("#loading-place").empty();
                 
                 // Append placename to error page
-                $("#loadingPlace").append(parsedLocQuery);
+                $("#loading-place").append(parsedLocQuery);
                 
                 // Show loading screen
                 $("#discovering").fadeIn('fast');
                 
                 // Remove any previous results
-                $("#resultsList").empty();
+                $(".all-results").empty();
                 
                 // Append place name to results page
-                $("#resultsList").append('<h2 id="place-name">' + place + '</h2>')
+                $("#place-name").append(place);
                 
                 // Encode place name for Trove API call (Eg. turn & into %26)
                 var encodedPlace = encodeURIComponent(place);
@@ -290,7 +287,7 @@ $(document).ready(function() {
 	                // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
 	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution;
                     var versionTitle = workArray[i].title;
-	                $("#resultsList").append('<div class="results"><img src="' + versionImg + '" class="results-img"><h3 class="results-title">' + versionTitle + '</h3></div>')
+	                $(".all-results").append('<div class="result"><img src="' + versionImg + '" class="result-img"><h3 class="result-title">' + versionTitle + '</h3></div>');
                 }
 	            
                 // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
@@ -338,7 +335,7 @@ $(document).ready(function() {
                     var randNews = randomInt(1,10);
 	                
 	                // Append to page
-                    $("#resultsList").append('<div class="results"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="results-img"><h3 class="results-title">' + newsHeading + '</h3></div>')
+                    $(".all-results").append('<div class="result"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"><h3 class="result-title">' + newsHeading + '</h3></div>');
                 }
 	            
 	            // Hide place selection page
@@ -369,7 +366,6 @@ $(document).ready(function() {
                 } else {
                     // Hide place selection page
                     $("#select").fadeOut('fast');
-                    
                     // Remove any previously appended placenames
                     $("#errorPlace").empty();
                     // Append placename to error page
@@ -379,7 +375,6 @@ $(document).ready(function() {
 
                     loadComplete();
                 }
-                
 	        };
 	    });
 	}
@@ -397,7 +392,6 @@ $(document).ready(function() {
     $('#noresultsBack').click(function() {
 	    // Hide error message
         $("#locError").fadeOut('hide');
-        
         // Show place selection page
         $("#select").fadeIn('show');        
 	});

@@ -213,7 +213,7 @@
                                  M155.594,248.551L155.594,248.551L155.594,248.551z"/>
                         </svg>
                     </div>
-                    <p id="findPlacesLoadingText">Finding places near you...</p>
+                    <p id="find-places-load">Finding places near you...</p>
                 </div>
 	        </div>
 	    </section>
@@ -231,15 +231,9 @@
             </div>
             
 		    <div class="row afternav">
-			    <div class="twelve columns">
+			    <div class="eight columns offset-by-two">
 					<h2>Make a discovery</h2>
-					
-					<!-- not sure how we intend to append list of places: -->
-					<!-- lists or divs? -->
                     <div id="places"></div>
-					<ul>
-					</ul>
-					
 			    </div>
 		    </div>
 	    </section>
@@ -279,8 +273,7 @@
                     </svg>
 				    
 				    <!-- Append place name to this p tag -->
-					<p id="load-artefacts">Discovering artefacts about<br/><span id="loadingPlace"></span></p>
-					
+					<p id="load-artefacts">Discovering artefacts about<br/><span id="loading-place"></span></p>
 	        	</div>
 	        </div>
 	    </section>
@@ -298,22 +291,14 @@
             </div>
             
 	        <div class="row afternav">
-	        	<div class="twelve columns" id="resultsList">
-		        
+	        	<div class="twelve columns center" id="resultsList">
                     <!-- Placename gets appended here -->
-                    <!--
-                    Placename structure:
-					<h2 id="place-name"></h2>
-                    -->
-					
-					<!-- Results get appended here -->
-                    <!--
-                    Results structure:
-					<div class="results">
-						<img src="" class="results-img">
-						<h3 class="results-title"></h3>
-					</div>
-                    -->
+		        	<img class="marker" src="images/Location-icon-inverse.svg">
+		        	<h2 id="place-name"></h2>
+
+					<!-- Results get appended here -->		        	
+		        	<div class="all-results">
+		        	</div>
                 </div>
 	        </div>
 	    </section>
