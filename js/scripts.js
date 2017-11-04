@@ -335,7 +335,7 @@ $(document).ready(function() {
                     var randNews = randomInt(1,10);
 	                
 	                // Append to page
-                    $(".all-results").append('<div class="result"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"><h3 class="result-title">' + newsHeading + '</h3></div>');
+                    $(".all-results").append('<div class="result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3></div>');
                 }
 	            
 	            // Hide place selection page
