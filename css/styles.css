@@ -44,7 +44,7 @@ h2 {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.07em;
-    margin-bottom: 1.5em; }
+    margin-bottom: 2em; }
 
 h3 {
     font-size: 1.1em;
@@ -52,7 +52,7 @@ h3 {
     letter-spacing: 0.02em; }
 
 .hide {
-    display: none;}
+    display: none; }
     
 .show {
     display: block; }
@@ -80,12 +80,23 @@ button,
     display: block;
     font-weight: 400;
     transition: all .3s ease; }
+
+    button:hover,
+    .button:hover {
+	    color: #fff;
+	    background-color: rgba(97,151,65,1); }
     	    	    
 .bold {
 	font-weight: 400; }
 	
 a {
 	color: rgba(97,151,65,1); }
+
+@media screen and (min-width: 550px) {
+    h2 {
+        margin-bottom: 3em;
+    }
+}
 
 
 /* Launch
@@ -182,20 +193,27 @@ a {
 	margin-bottom: 2rem; }
 	
 	.icons {
-		display: inline-block;
 		left: 50%;
 		transform: translateX(-50%);
 		position: relative;
-		width: 70%;
-		vertical-align: bottom; }
+		width: 90%;
+		vertical-align: bottom;
+        max-width: 300px; }
 
-	/* positioning needs to be fixed - not sure how to center it correctly */
+    #arrows-icon {
+        margin-bottom: -15%;
+    }
+
 	#location-icon {
-	    width: 7rem; 
-		transform: translateX(-150%); }
+	    width: 8rem;
+        display: block;
+        margin: 0 auto; }
 
 #find-places {
 	width: 70%; }
+
+#underline {
+    max-width: 200px; }
 
 #pointing-img {
     width: 55%;
@@ -215,13 +233,14 @@ a {
     top: 0;
     overflow: scroll;
     z-index: 10; }
-    
-    #about .afternav  {
-        width: 90%;
-	    margin: 8rem 5%; }
+
+    #about h2 {
+        margin-bottom: 4rem;
+    }
     
     #about .afternav p {
 	    margin-bottom: 3rem; }
+
 
 
 /* Navigation
@@ -232,16 +251,26 @@ a {
     width: 100%;
     background: #fff;
     height: 5.5rem;
-    top: 0; }
+    top: 0;
+    padding-top: 0.75rem; }
     
     .back-link {
         position: absolute;
         display: inline-block;
-        left: 2rem;
         font-size: 2em;
         color: #303030;
         cursor: pointer;
         font-weight: 400; }
+
+    .error,
+    .select,
+    .results, 
+    .flickr,
+    .newspaper {
+        left: 2rem; }
+
+    .about {
+        right: 2rem; }
     
     .logo {
         height: 3rem;
@@ -257,7 +286,7 @@ a {
 		font-size: 0;
 		width: 50px;
         height: 100%;
-        margin: 0 auto;
+        margin: 0.5rem auto 0;
         cursor: pointer;
         position: absolute;
         left: 50%;
@@ -276,7 +305,7 @@ a {
         text-transform: uppercase; }
 
 .afternav {
-    margin-top: 8rem; }
+    margin-top: 10rem; }
 
 .main-row {
 	margin: 0 auto;
@@ -284,6 +313,11 @@ a {
 	top: 50%;
 	transform: translateY(-50%);
 	width: 100%; }
+
+@media screen and (min-width: 550px) {
+    .afternav {
+        margin-top: 13rem; }
+}
 
 
 /* Loading
@@ -394,11 +428,7 @@ a {
 
 .place {
     cursor: pointer;
-    margin-bottom: 1rem; }
-    
-    .place:hover {
-	    color: #fff;
-	    background-color: rgba(97,151,65,1); }
+    margin-bottom: 2rem; }
 
 
 /*  Results
@@ -441,7 +471,7 @@ a {
 		padding-right: 5px;
 		display: inline-block;
 		vertical-align: bottom;
-		margin-bottom: 1.85em; }
+		margin-bottom: 2.5em; }
 
 .newsArticle {
     display: inline-block;
@@ -464,6 +494,14 @@ a {
         text-align: center;
         font-size: 1.2em;
         font-style: italic; }
+
+@media screen and (min-width: 550px) {
+    .img-wrap {
+        height: 300px; }
+    
+    .marker {
+        margin-bottom: 3.85em; }
+}
 
 
 /*  Individual Artifacts
