@@ -131,9 +131,7 @@ $(document).ready(function() {
 //  			currLoc = new google.maps.LatLng(-35.296623,149.129822);
 
 			// Current location coordinates
-// 			currLoc = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-							currLoc = new google.maps.LatLng(-35.4265337,149.12441189999998);
-
+			currLoc = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
 			console.log('current location: ' + currLoc);
 			
 			// Don't think we need this
