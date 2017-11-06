@@ -100,7 +100,7 @@ $(document).ready(function() {
     });
     // From error page
     $('.back-link.error').click(function() {
-        $("#locError").fadeOut('fast');
+        $("#location-error").fadeOut('fast');
         $("#select").fadeIn('fast');
     });
 
@@ -372,7 +372,7 @@ $(document).ready(function() {
                     // Append placename to error page
                     $("#errorPlace").append(decodeURIComponent(place));
                     // Show error message
-                    $("#locError").fadeIn('fast');
+                    $("#location-error").fadeIn('fast');
 
                     loadComplete();
                 }
@@ -392,7 +392,7 @@ $(document).ready(function() {
 
     $('#noresultsBack').click(function() {
 	    // Hide error message
-        $("#locError").fadeOut('hide');
+        $("#location-error").fadeOut('hide');
         // Show place selection page
         $("#select").fadeIn('show');        
 	});
