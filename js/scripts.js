@@ -433,3 +433,8 @@ $('body').on('click', '.flickr-result', function () {
     $('#results').fadeOut('fast');
     $('#flickr').fadeIn('fast');
 });
+
+$('.back-link.flickr').click(function() {
+    $('#flickr').fadeOut('fast');
+    $('#results').fadeIn('fast');
+});

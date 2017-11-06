@@ -321,7 +321,7 @@ a {
 
 @media screen and (min-width: 550px) {
     .afternav {
-        margin-top: 7rem; }
+        padding-top: 12rem; }
 }
 
 
@@ -579,6 +579,16 @@ div#star-twelve {
 .place {
     cursor: pointer;
     margin-bottom: 2rem; }
+
+#google-strip {
+    background-color: #303030;
+    text-align: center;
+    height: 5rem;
+    bottom: 0;
+    position: absolute; }
+
+img#google {
+    margin-top: 1.5rem; }
 
 
 /*  Results
