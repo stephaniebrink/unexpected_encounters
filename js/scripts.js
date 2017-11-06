@@ -154,20 +154,22 @@ $(document).ready(function() {
 		function callback(results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
 				
-				console.log(results);
 				
 				// Set desired place types
 				var desiredTypes = ['airport', 'amusement_park', 'aquarium', 'art_gallery', 'bank', 'campground', 'casino', 'cemetery', 'church', 'city_hall', 'courthouse',  'embassy', 'fire_station', 'hindu_temple', 'hospital', 'library', 'local_government_office', 'mosque', 'museum', 'park', 'police', 'post_office', 'school', 'stadium', 'synagogue', 'university', 'zoo', 'colloquial_area', 'country', 'locality', 'natural_feature', 'neighborhood', 'place_of_worship', 'political', 'street_address'];
 				var desiredPlace = '';
+				
+				// Remove any duplicate places from results
+				var trimmedResults = eliminateDuplicates(results, 'name');
 
 				// Loop through all nearby place results
-				for (var i = 0; i < results.length; i++) {
+				for (var i = 0; i < trimmedResults.length; i++) {
 					
-					var place = results[i].name,
-						vicinity = results[i].vicinity,
-						types = results[i].types;
+					var place = trimmedResults[i].name,
+						vicinity = trimmedResults[i].vicinity,
+						types = trimmedResults[i].types;
 																	
-					// Log place name, vicinity and types to console	
+					// Log place name, vicinity and types to console
 					console.log('A place has been found: ' + place);
 					console.log('The vicinity is: ' + vicinity);
 					console.log('The types are: ' + types);
@@ -402,5 +404,25 @@ $(document).ready(function() {
 	function randomInt(minNum,maxNum) {
 	    return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
 	};
+
+	// ----- REMOVE DUPLICATE PLACES FROM RESULTS -----
+
+	function eliminateDuplicates(originalArray, objKey) {
+	
+		var trimmedArray = [];
+		var values = [];
+		var value;
+	
+		for(var i = 0; i < originalArray.length; i++) {
+	    	value = originalArray[i][objKey];
+	
+			if(values.indexOf(value) === -1) {
+				trimmedArray.push(originalArray[i]);
+				values.push(value);
+	    	}
+		}
+	
+		return trimmedArray;
+	}
 	
 }); // close document ready
