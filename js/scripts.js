@@ -290,7 +290,7 @@ $(document).ready(function() {
 	                // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
 	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution;
                     var versionTitle = workArray[i].title;
-	                $(".all-results").append('<div class="result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3></div>');
+	                $(".all-results").append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3></div>');
                 }
 	            
                 // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
@@ -338,7 +338,7 @@ $(document).ready(function() {
                     var randNews = randomInt(1,10);
 	                
 	                // Append to page
-                    $(".all-results").append('<div class="result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3></div>');
+                    $(".all-results").append('<div class="result newspaper-result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3></div>');
                 }
 	            
 	            // Hide place selection page
@@ -426,3 +426,10 @@ $(document).ready(function() {
 	}
 	
 }); // close document ready
+
+
+// -------------- WIP ------------------------
+$('body').on('click', '.flickr-result', function () {
+    $('#results').fadeOut('fast');
+    $('#flickr').fadeIn('fast');
+});

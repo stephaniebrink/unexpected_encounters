@@ -242,6 +242,9 @@ a {
     #about .afternav p {
 	    margin-bottom: 3rem; }
 
+    #about .afternav p:last-of-type {
+        margin-bottom: 10rem; }
+
 
 
 /* Navigation
@@ -251,9 +254,10 @@ a {
     position: fixed;
     width: 100%;
     background: #fff;
-    height: 5.5rem;
+    height: 7rem;
     top: 0;
-    padding-top: 0.75rem; }
+    padding-top: 0.75rem;
+    z-index: 1; }
     
     .back-link {
         position: absolute;
@@ -287,7 +291,7 @@ a {
 		font-size: 0;
 		width: 50px;
         height: 100%;
-        margin: 0.5rem auto 0;
+        margin: -0.5rem auto 0;
         cursor: pointer;
         position: absolute;
         left: 50%;
@@ -317,7 +321,7 @@ a {
 
 @media screen and (min-width: 550px) {
     .afternav {
-        margin-top: 13rem; }
+        margin-top: 7rem; }
 }
 
 
@@ -326,7 +330,8 @@ a {
 
 #loading,
 #discovering,
-#location-error {
+#location-error,
+#flickr {
     position: fixed;
     top: 0;
     z-index: 1;
@@ -592,7 +597,9 @@ div#star-twelve {
 	.result-img {
 	    width: 100%;
 	    margin: 0;
-	    padding: 0; }
+	    padding: 0;
+        height: 200px;
+        object-fit: cover; }
 	    
     .result-title {
 	    text-transform: uppercase;
@@ -641,11 +648,15 @@ div#star-twelve {
         font-style: italic; }
 
 @media screen and (min-width: 550px) {
-    .img-wrap {
+    .img-wrap,
+    .result-img {
         height: 300px; }
     
     .marker {
         margin-bottom: 3.85em; }
+    
+    .result-title {
+        text-align: center; }
 }
 
 
