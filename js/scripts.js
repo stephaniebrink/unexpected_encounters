@@ -14,16 +14,6 @@ $(document).ready(function() {
     $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
     $('#onboard').delay(2000).fadeIn('slow');
     
-    // ----- ON CLICK: "DISCLAIMER" -----
-    $('#disclaimerButton').click(function() {
-        $("#disclaimer").addClass('show');
-    });
-    
-    // ----- ON CLICK: DISCLAIMER "OK" -----
-    $('#disclaimerOk').click(function() {
-        $("#disclaimer").addClass('hide');
-    });
-    
     // ----- ON CLICK: "GOT IT" -----
     $('#got-it').click(function() {
         $("#onboard").fadeOut('fast');
@@ -288,9 +278,15 @@ $(document).ready(function() {
 	            
 	            for (i = 0; i < workArray.length; i++) {
 	                // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
-	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution;
-                    var versionTitle = workArray[i].title;
-	                $(".all-results").append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3></div>');
+	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution,
+                        versionTitle = workArray[i].title,
+                        versionCreator = workArray[i].version[0].record[0].metadata.dc.creator,
+                        versionCreatorLink = workArray[i].identifier[0].value,
+                        versionDesc = workArray[i].version[0].record[0].metadata.dc.description.value,
+                        versionTroveLink = workArray[i].troveUrl;
+                    
+                    // need to append more data in a hidden div so it can be retrived later when the item is selected
+	                $('.all-results').append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3><div class="hide"><a class="creator" href="' + versionCreatorLink + '">' + versionCreator + '</a><p class="snip">' + versionDesc + '</p><a class="button">' + versionTroveLink + '</a></div></div>');
                 }
 	            
                 // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
@@ -428,10 +424,28 @@ $(document).ready(function() {
 }); // close document ready
 
 
-// -------------- WIP ------------------------
+// SELECT FLICKR RESULT (can't put in (document).ready as not in the DOM when page loaded)
 $('body').on('click', '.flickr-result', function () {
     $('#results').fadeOut('fast');
     $('#flickr').fadeIn('fast');
+    
+    // find the data of the selected Flickr result
+    var thisImg = $(this).find('.result-img').attr('src'),
+        thisTitle = $(this).find('.result-title').text(),
+        thisCreator = $(this).find('.creator').text(),
+        thisCreatorLink = $(this).find('.creator').attr('href'),
+        thisDesc = $(this).find('.snip').text(),
+        thisTroveLink = $(this).find('.button').text();
+    
+    // append to new result screen
+    $('.artefact-img').attr('src', thisImg);
+    $('#artefact-title').text(thisTitle);
+    $('#contributor').html('Contributed by <a href="' + thisCreatorLink +'" target="_blank">' + thisCreator + '</a>');
+    if (thisDesc != 'undefined') {
+        $('#desc').text(thisDesc);
+    }
+    $('#result-button').attr('href', thisTroveLink);
+    
 });
 
 $('.back-link.flickr').click(function() {
