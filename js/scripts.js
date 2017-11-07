@@ -286,7 +286,7 @@ $(document).ready(function() {
                         versionTroveLink = workArray[i].troveUrl;
                     
                     // need to append more data in a hidden div so it can be retrived later when the item is selected
-	                $('.all-results').append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3><div class="hide"><a class="creator" href="' + versionCreatorLink + '">' + versionCreator + '</a><p class="snip">' + versionDesc + '</p><a class="button">' + versionTroveLink + '</a></div></div>');
+	                $('.all-results').append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3><div class="hide"><a class="creator" href="' + versionCreatorLink + '">' + versionCreator + '</a><p class="snip">' + versionDesc + '</p><a href="' + versionTroveLink + '" class="button"></a></div></div>');
                 }
 	            
                 // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
@@ -325,16 +325,22 @@ $(document).ready(function() {
 	            var articleArray = newsZone.records.article;
 	            
 	            for (i = 0; i < articleArray.length; i++) {
+                    
 	                var pageUrl = articleArray[i].trovePageUrl,
 	                	pageNum = pageUrl.split("http://trove.nla.gov.au/ndp/del/page/").slice(1),
 		                pdfUrl = 'http://trove.nla.gov.au/newspaper/rendition/nla.news-page' + pageNum + '.pdf',
 	                	newsHeading = articleArray[i].heading,
-						newsText = articleArray[i].articleText;
+                        newspaper = articleArray[i].title.value,
+                        date = moment(articleArray[i].date),
+                        newsDate = date.format('Do MMMM YYYY'),
+                        newsArticle = articleArray[i].articleText,
+						newsText = $(newsArticle).text(),
+                        newsTroveLink = articleArray[i].troveUrl;
                     
                     var randNews = randomInt(1,10);
 	                
 	                // Append to page
-                    $(".all-results").append('<div class="result newspaper-result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3></div>');
+                    $('.all-results').append('<div class="result newspaper-result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3><div class="hide"><p id="newspaper-name">' + newspaper + '</p><p id="newsdate">' + newsDate + '</p><p id="news-text">' + newsText + '</p><a class="button" href="' + newsTroveLink + '"></a></div></div>');
                 }
 	            
 	            // Hide place selection page
@@ -435,7 +441,7 @@ $('body').on('click', '.flickr-result', function () {
         thisCreator = $(this).find('.creator').text(),
         thisCreatorLink = $(this).find('.creator').attr('href'),
         thisDesc = $(this).find('.snip').text(),
-        thisTroveLink = $(this).find('.button').text();
+        thisTroveLink = $(this).find('.button').attr('href');
     
     // append to new result screen
     $('.artefact-img').attr('src', thisImg);
@@ -444,11 +450,38 @@ $('body').on('click', '.flickr-result', function () {
     if (thisDesc != 'undefined') {
         $('#desc').text(thisDesc);
     }
-    $('#result-button').attr('href', thisTroveLink);
+    $('.result-button').attr('href', thisTroveLink);
     
 });
 
+$('body').on('click', '.newspaper-result', function() {
+    $('#results').fadeOut('fast');
+    $('#newspaper').fadeIn('fast');
+    
+    // find the data of the select newspaper result
+    var thisHeading = $(this).find('.result-title').text(),
+        thisNewspaper = $(this).find('#newspaper-name').text(),
+        thisDate = $(this).find('#newsdate').text(),
+        thisArticle = $(this).find('#news-text').text(),
+        thisTroveLink = $(this).find('.button').attr('href');
+        
+    // append to new result screen
+    $('#newspaper-title').text(thisHeading);
+    $('#news-name').text(thisNewspaper);
+    $('#date').text(thisDate);
+    $('#newspaper-desc').text(thisArticle);
+    $('.result-button').attr('href', thisTroveLink);
+        
+});
+
+// BACK LINK FOR FLICKR RESULT
 $('.back-link.flickr').click(function() {
     $('#flickr').fadeOut('fast');
+    $('#results').fadeIn('fast');
+});
+
+// BACK LINK FOR NEWSPAPER RESULT
+$('.back-link.newspaper').click(function() {
+    $('#newspaper').fadeOut('fast');
     $('#results').fadeIn('fast');
 });

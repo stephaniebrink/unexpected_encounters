@@ -11,9 +11,10 @@
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <!-- Google Font
+    <!-- Google Fonts
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700" rel="stylesheet">
 
 	<!-- CSS
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
@@ -343,7 +344,7 @@
                         
                         <div class="six columns offset-by-three">
                             <!-- changed to 'open this in Trove', as using the word see isn't inclusive language -->
-                            <a href="" target="_blank" id="result-button" class="button">Open this in Trove</a>
+                            <a href="" target="_blank" class="result-button button">Open this in Trove</a>
                             <img class="line" id="underline" src="images/Handdrawn/Grey-underline-home.svg">
                         </div>
                     </div>
@@ -363,24 +364,41 @@
                 <a class="about-link">About</a>
             </div>
             
-	        <div class="row">
-	        	<div class="ten columns">
-		        
-		        	<!-- Artefacts details -->
-					<h2 id="artefact-title"></h2>
-					<p id="date"></p>
-					<p id="newspaper-name"></p>
-					<p id="desc"></p>
+            <div id="newspaper-content">
+                <div id="newspaper-container" class="container">
+                    <div class="row">
+                        <div class="ten columns offset-by-one">
+                            <div id="grey-wrap">
 
-					<p><a href="" class="button">Open this in Trove</a></p>
-	        	</div>
-	        </div>
+                                <!-- Artefacts details -->
+                                <h2 id="newspaper-title"></h2>
+                                <p id="news-name" class="center"></p>
+                                <p id="date" class="center"></p>
+                                <p id="newspaper-desc"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="ten columns offset-by-one">
+                            <p id="doozy">Are there errors in this text? if there are, what a doozy! Help us correct them by opening this article in Trove!</p>
+                        </div>
+
+                        <div class="six columns offset-by-three">
+                            <a href="" target="_blank" class="result-button button">Open this in Trove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 	    </section>
         
 	
 	<!-- Scripts
 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->    
     <script src="js/jquery-3.2.0.js"></script>
+    <script src="js/moment.min.js"></script>
     <script src="js/scripts.js"></script>
     
 </body>

@@ -258,7 +258,8 @@ a {
     height: 7rem;
     top: 0;
     padding-top: 0.75rem;
-    z-index: 1; }
+    z-index: 1;
+    max-width: 1400px; } /* need to work out how to center a fixed div for large screens */
     
     .back-link {
         position: absolute;
@@ -690,7 +691,8 @@ img#little-guy-oops {
 /*  Individual Artifacts - Flickr
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-div#flickr-content {
+div#flickr-content,
+div#newspaper-content {
     overflow: scroll; }
 
 img.artefact-img {
@@ -714,15 +716,17 @@ p#desc {
 
 a.button {
     text-decoration: none;
-    padding-top: 2rem; }
+    padding-top: 2rem;
+    text-align: center; }
 
 img.line {
     position: relative;
     width: 90%;
-    margin: 0.65rem 0 7rem; }
+    margin: 0.65rem 0 10rem; }
 
 @media screen and (max-width: 550px) {
-    #img-container {
+    #img-container,
+    #newspaper-container {
         padding: 0;
         width: 100%; }
 }
@@ -736,3 +740,35 @@ img.line {
 
 /*  Individual artefacts - Newspaper
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+div#grey-wrap {
+    font-family: 'Merriweather', serif;
+    background-color: #fafafa;
+    padding: 7rem 4rem 4rem;
+    line-height: 1.8; }
+
+h2#newspaper-title {
+    margin: 5rem 0 2rem; }
+
+p#news-name {
+    font-weight: bold; }
+
+p#date {
+    margin: 2rem 0; }
+
+p#newspaper-desc {
+    text-align: justify; }
+
+p#doozy {
+    margin: 3rem 0 3rem; }
+
+section#newspaper .button {
+    margin: 0 auto 10rem; }
+
+@media screen and (min-width: 551px) {
+    div#grey-wrap {
+        margin-top: 12rem; }
+    
+    h2#newspaper-title {
+        margin: 3rem 0 2rem; }
+}
