@@ -261,7 +261,8 @@ a {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .nav {
-    position: fixed;
+    position: relative;
+    margin: 0 auto;
     width: 100%;
     background: #fff;
     height: 7rem;
@@ -321,7 +322,7 @@ a {
         text-transform: uppercase; }
 
 .afternav {
-    padding-top: 10rem; }
+    padding-top: 4rem; }
 
 .main-row {
 	margin: 0 auto;
@@ -332,7 +333,7 @@ a {
 
 @media screen and (min-width: 550px) {
     .afternav {
-        padding-top: 12rem; }
+        padding-top: 6rem; }
 }
 
 @media screen and (min-width: 1401px) {
@@ -604,6 +605,13 @@ div#star-twelve {
 #places {
 	margin-bottom: 13rem; }
 	
+#loc-denied {
+	display: none;
+	padding-bottom: 2em;
+	width: 80%;
+	margin: 0 auto;
+	text-align: center; }
+	
 #google-strip {
     background-color: #303030;
     text-align: center;
@@ -773,7 +781,7 @@ img.line {
 div#grey-wrap {
     font-family: 'Merriweather', serif;
     background-color: #fafafa;
-    padding: 7rem 4rem 4rem;
+    padding: 4rem 4rem 4rem;
     line-height: 1.8; }
 
 h2#newspaper-title {
@@ -803,7 +811,7 @@ section#newspaper .button {
 
 @media screen and (min-width: 551px) {
     div#grey-wrap {
-        margin-top: 12rem; }
+        margin-top: 10rem; }
     
     h2#newspaper-title {
         margin: 3rem 0 2rem; }

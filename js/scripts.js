@@ -39,6 +39,7 @@ $(document).ready(function() {
                 // Add coordinates to variables
                 lat = crds.latitude;
                 lng = crds.longitude;
+                $('#loc-denied').hide();
             }
 
             function error(err) {
@@ -46,8 +47,9 @@ $(document).ready(function() {
                 console.log(err);
 
                 // Set default location to Canberra
-                // This doesn't do anything at the moment
-                var defaultLocation = '-35.28346,149.12807';
+                lat = -35.28346;
+                lng = 149.12807;
+                $('#loc-denied').show();
             }
 
             // Prompt the user for their location
