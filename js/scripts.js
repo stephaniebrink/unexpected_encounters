@@ -288,7 +288,7 @@ $(document).ready(function() {
                     // need to append more data in a hidden div so it can be retrived later when the item is selected
 	                $('.all-results').append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3><div class="hide"><a class="creator" href="' + versionCreatorLink + '">' + versionCreator + '</a><p class="snip">' + versionDesc + '</p><a href="' + versionTroveLink + '" class="button"></a></div></div>');
                 }
-	            
+                
                 // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
                 troveNews(place,true);
 	            
@@ -390,6 +390,15 @@ $(document).ready(function() {
 	    // Hide loading screens
 	    $("#loading").fadeOut('fast');
 	    $("#discovering").fadeOut('fast');
+        
+        // randomise the results, source: http://jsfiddle.net/C6LPY/2/
+        $(function () {
+            var parent = $('.all-results');
+            var divs = parent.children();
+            while (divs.length) {
+                parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
+            }
+        });
 	}
     
     // ----- NO RESULTS - BACK TO PLACE SELECTION -----
