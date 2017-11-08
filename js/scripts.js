@@ -17,7 +17,7 @@ $(document).ready(function() {
     // ----- ON CLICK: "GOT IT" -----
     $('#got-it').click(function() {
         $("#onboard").fadeOut('fast');
-        $("#home").fadeIn('fast');
+        $("#home").delay(200).fadeIn('fast');
         
         // ----- FIND USER'S LOCATION -----
         // NOTE: this only works when viewing the file in your browser (i.e. file:///Volumes/Mactinosh etc...). 

@@ -144,7 +144,6 @@ a {
     min-width: 80px;
     max-width: 150px; }
 
-
 /* Onboarding
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -338,8 +337,7 @@ a {
 
 @media screen and (min-width: 1401px) {
     .nav {
-        width: 1400px;
-        margin-left: 260px; }
+        width: 1400px; }
     
     .nav:before {
         content: '';
@@ -603,12 +601,15 @@ div#star-twelve {
     cursor: pointer;
     margin-bottom: 2rem; }
 
+#places {
+	margin-bottom: 13rem; }
+	
 #google-strip {
     background-color: #303030;
     text-align: center;
     height: 5rem;
     bottom: 0;
-    position: absolute; }
+    position: fixed; }
 
 img#google {
     margin-top: 1.5rem; }
