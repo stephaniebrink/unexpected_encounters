@@ -1,14 +1,11 @@
-$(document).ready(function() {
-	
+$(document).ready(function() {	
 	
 	// ----- GLOBAL VARIABLES -----
-
 	var troveKey = 'jg79p9ghks94tkd3',
 		mapKey = 'AIzaSyBl5D5R3IDFPQd53C_ILtRu9yAifsSCNvM',
 		currLoc,
 		lat,
-		lng;
-    
+		lng;   
 
     // ----- INTRO PAGE FADEOUT -----
     $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
@@ -23,32 +20,25 @@ $(document).ready(function() {
         // NOTE: this only works when viewing the file in your browser (i.e. file:///Volumes/Mactinosh etc...). 
 
         if (navigator.geolocation) {
-            console.log(navigator.geolocation);
 
             function success(pos) {           
                 // Store the current coordinates
                 var crds = pos.coords;
 
-                // Log coordinates to console
-                console.log(crds);
-                console.log('My current position is: ');
-                console.log('Latitude: ' + crds.latitude);
-                console.log('Longitude: ' + crds.longitude);
-                console.log('More or less: ' + crds.accuracy + ' metres.');
-
                 // Add coordinates to variables
                 lat = crds.latitude;
                 lng = crds.longitude;
+                
+                // Hide default location error message
                 $('#loc-denied').hide();
             }
 
             function error(err) {
-                // Log error to console
-                console.log(err);
-
                 // Set default location to Canberra
                 lat = -35.28346;
                 lng = 149.12807;
+                
+                // Show default location error message
                 $('#loc-denied').show();
             }
 
@@ -124,9 +114,7 @@ $(document).ready(function() {
 
 			// Current location coordinates
 			currLoc = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-			console.log('current location: ' + currLoc);
 			
-			// Don't think we need this
 			map = new google.maps.Map(document.getElementById('map'), {
 		    	center: currLoc,
 				zoom: 15
@@ -146,7 +134,6 @@ $(document).ready(function() {
 		function callback(results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK) {
 				
-				
 				// Set desired place types
 				var desiredTypes = ['airport', 'amusement_park', 'aquarium', 'art_gallery', 'bank', 'campground', 'casino', 'cemetery', 'church', 'city_hall', 'courthouse',  'embassy', 'fire_station', 'hindu_temple', 'hospital', 'library', 'local_government_office', 'mosque', 'museum', 'park', 'police', 'post_office', 'school', 'stadium', 'synagogue', 'university', 'zoo', 'colloquial_area', 'country', 'locality', 'natural_feature', 'neighborhood', 'place_of_worship', 'political', 'street_address'];
 				var desiredPlace = '';
@@ -161,11 +148,6 @@ $(document).ready(function() {
 						vicinity = trimmedResults[i].vicinity,
 						types = trimmedResults[i].types;
 																	
-					// Log place name, vicinity and types to console
-					console.log('A place has been found: ' + place);
-					console.log('The vicinity is: ' + vicinity);
-					console.log('The types are: ' + types);
-				
 					// Loop through all desired types
 					for (var d = 0; d < desiredTypes.length; d++) {
 					
@@ -208,8 +190,6 @@ $(document).ready(function() {
                 var parsedLocQuery = $.parseHTML(locQuery);
                 var place = parsedLocQuery[0].data;
                 
-                console.log( "Place selected: " + place );
-                
                 // Remove any previously appended placenames
                 $("#loading-place").empty();
                 
@@ -231,32 +211,9 @@ $(document).ready(function() {
 
                 // Retrieve Flickr pics data from Trove
                 trovePics(encodedPlace);
-                
             });
 		}
-        
 	})
-	
-	// This is the data that a Nearby Places call returns: 
-	/* 
-	{"geometry":
-		{"location":
-			{"lat":-35.1799609,"lng":149.3109945},
-			"viewport":
-			{"south":-35.2255402,"west":149.25235769999995,"north":-35.1221184,"east":149.40517869999996}
-		},
-		"icon":"https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
-		"id":"a3f62ca41932bb9d716eafc47827e23ab0f3948a",
-		"name":"Bywong",
-		"photos":[{"height":1836,"html_attributions":["<a href=\"https://maps.google.com/maps/contrib/110840162992236573478/photos\">Reeves Papaol</a>"],"width":3264}],
-		"place_id":"ChIJle2eKNb3FmsRANxDkLQJBgQ",
-		"reference":"CmRbAAAAQ074M2gH7KZ9c798-88Z3pbrMmp_P2AcHX54GSf_zEOZazB57n_zUpYMueWbCzazI860a3ADhjr34m32A3CYzIusIr7N3DXNIA763TqJ7ARJATW8Plo98bQ_Z26agIrcEhDMjOocP4Z0WHz-FdICXh1lGhTkdJsNpiYfxGKM7UYLa0C_fTPnKQ",
-		"scope":"GOOGLE",
-		"types":["locality","political"],
-		"vicinity":"Bywong",
-		"html_attributions":[]} (scripts.js, line 88)			
-	*/
-    
     
 	// ----- TROVE API: FLICKR PICTURES -----
 
@@ -266,10 +223,6 @@ $(document).ready(function() {
 	    
 	    $.getJSON(url, function(data) {
 	        
-	        // Log data
-	        console.log("Flickr results");
-	        console.log(data);
-	    
 	        var zoneArray = data.response.zone;
 	        	        
 	        // If Trove found a match
@@ -297,8 +250,6 @@ $(document).ready(function() {
 	        } else {
                 // Just retrieve newspaper article data from Trove ('false' indicates there are NO pic results)
 	            troveNews(place,false);
-                
-                console.log("No picture results");
 	        };
 	    });
 	}
@@ -309,14 +260,8 @@ $(document).ready(function() {
 	function troveNews(place,pics) {
 	    
 	    var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20date:[*%20TO%201900]%20NOT%20Advertising&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
-	    
-        console.log("Newspaper URL: " + url);
-        
+	            
 	    $.getJSON(url, function(data) {
-	        
-	        // Log data
-	        console.log("Newspaper results");
-	        console.log(data);
 	        
 	        var newsZone = data.response.zone[0];
 	        
@@ -355,8 +300,6 @@ $(document).ready(function() {
                 loadComplete();
 	            
 	        } else {
-                
-                console.log("No newspaper results");
                 
                 // If there are no newspaper results, but there were picture results
                 if (pics == true) {
@@ -404,7 +347,6 @@ $(document).ready(function() {
 	}
     
     // ----- NO RESULTS - BACK TO PLACE SELECTION -----
-
     $('#noresultsBack').click(function() {
 	    // Hide error message
         $("#location-error").fadeOut('hide');
@@ -412,36 +354,36 @@ $(document).ready(function() {
         $("#select").fadeIn('show');        
 	});
 	
-	// ----- GENERATE RANDOM WHOLE NUMBER -----
 	
+	// ----- GENERATE RANDOM WHOLE NUMBER -----
 	function randomInt(minNum,maxNum) {
 	    return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
 	};
 
-	// ----- REMOVE DUPLICATE PLACES FROM RESULTS -----
 
+	// ----- REMOVE DUPLICATE PLACES FROM RESULTS -----
 	function eliminateDuplicates(originalArray, objKey) {
 	
 		var trimmedArray = [];
 		var values = [];
 		var value;
 	
-		for(var i = 0; i < originalArray.length; i++) {
+		for (var i = 0; i < originalArray.length; i++) {
 	    	value = originalArray[i][objKey];
 	
-			if(values.indexOf(value) === -1) {
+			if (values.indexOf(value) === -1) {
 				trimmedArray.push(originalArray[i]);
 				values.push(value);
 	    	}
 		}
-	
 		return trimmedArray;
 	}
-	
 }); // close document ready
 
 
-// SELECT FLICKR RESULT (can't put in (document).ready as not in the DOM when page loaded)
+// ----- SELECT FLICKR RESULT ----- 
+// can't put this in (document).ready as not in the DOM when page loaded
+
 $('body').on('click', '.flickr-result', function () {
     $('#results').fadeOut('fast');
     $('#flickr').fadeIn('fast');
