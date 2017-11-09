@@ -13,14 +13,13 @@ $(document).ready(function() {
     // Fades out after 2 seconds or on click
     $('#intro').click(function() {
         $('#intro').hide();
-        $('#onboard').fadeIn('fast');
+        $('#onboard').fadeIn('slow');
     });
     setTimeout(function(){ 
-        $('#intro').fadeOut('fast');
-        $('#onboard').fadeIn('fast');
+        $('#intro').hide();
+        $('#onboard').fadeIn('slow');
     }, 2000);
-//    $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
-//    $('#onboard').delay(2000).fadeIn('slow');
+
     
     // ----- ON CLICK: "GOT IT" -----
     $('#got-it').click(function() {
