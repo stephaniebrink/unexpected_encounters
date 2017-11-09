@@ -88,9 +88,11 @@
 		<section id="home" class="hide">
             
 		    <!-- Navigation -->
-            <div class="row nav">
-                <img class="logo back-link home" src="images/Unexpected-Discoveries-logo-black.svg">
-                <a class="about-link">About</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <img class="logo back-link home" src="images/Unexpected-Discoveries-logo-black.svg">
+                    <a class="about-link">About</a>
+                </div>
             </div>
             
 		    <div class="row afternav">
@@ -110,7 +112,11 @@
 			    </div>
 			    
 			    <!-- Pointing guy -->
-				<img id="pointing-img" src="images/Little-guy-pointing-up.svg" />
+                <div class="row">
+				    <div class="six columns offset-by-three">
+                        <img id="pointing-img" src="images/Little-guy-pointing-up.svg" />
+                    </div>
+			    </div>
 		    </div>
 		    <div id="map"></div>
 	    </section>
@@ -120,9 +126,11 @@
 	    <section id="about" class="hide">
             
             <!-- Navigation -->
-            <div class="row nav">
-                <a class="logo-small">UD &ndash; Home</a>
-                <a class="back-link about" title="close">x</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <a class="logo-small">UD &ndash; Home</a>
+                    <a class="back-link about" title="close">x</a>
+                </div>
             </div>
             
             <div class="container">
@@ -187,16 +195,18 @@
 		<section id="select" class="hide">
             
             <!-- Navigation -->
-            <div class="row nav">
-                <a class="back-link select" title="go back">&lt;</a>
-				<a class="logo-small">UD &ndash; Home</a>
-                <a class="about-link">About</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <a class="back-link select" title="go back">&lt;</a>
+                    <a class="logo-small">UD &ndash; Home</a>
+                    <a class="about-link">About</a>
+                </div>
             </div>
             
 		    <div class="row afternav">
 			    <div class="eight columns offset-by-two">
 					<h2>Make a discovery</h2>
-					<p id="loc-denied">Uh oh, we couldn't find you. Next time, please make sure we can access your location. In the meantime... here are some places near Canberra.</p>
+                    <p id="loc-denied">Uh oh, we couldn't find you. Next time, please make sure we can access your location. In the meantime... here are some places near Canberra.</p>
                     <div id="places"></div>
 			    </div>
 		    </div>
@@ -270,10 +280,12 @@
 	    <section id="location-error" class="hide">
             
             <!-- Navigation -->
-            <div class="row nav">
-                <a class="back-link error" title="go back">&lt;</a>
-				<a class="logo-small">UD &ndash; Home</a>
-                <a class="about-link">About</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <a class="back-link error" title="go back">&lt;</a>
+                    <a class="logo-small">UD &ndash; Home</a>
+                    <a class="about-link">About</a>
+                </div>
             </div>
            
             <div class="row afternav">
@@ -292,10 +304,12 @@
 	    <section id="results" class="hide">
             
             <!-- Navigation -->
-            <div class="row nav">
-                <a class="back-link results" title="go back">&lt;</a>
-				<a class="logo-small">UD &ndash; Home</a>
-                <a class="about-link">About</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <a class="back-link results" title="go back">&lt;</a>
+                    <a class="logo-small">UD &ndash; Home</a>
+                    <a class="about-link">About</a>
+                </div>
             </div>
             
             <div class="container results-container">
@@ -317,10 +331,12 @@
 	    <section id="flickr" class="hide">
             
             <!-- Navigation -->
-            <div class="row nav">
-                <a class="back-link flickr" title="go back">&lt;</a>
-				<a class="logo-small">UD &ndash; Home</a>
-                <a class="about-link">About</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <a class="back-link flickr" title="go back">&lt;</a>
+                    <a class="logo-small">UD &ndash; Home</a>
+                    <a class="about-link">About</a>
+                </div>
             </div>
             
             <div id="flickr-content" class="full-height">
@@ -345,7 +361,6 @@
                         </div>
                         
                         <div class="six columns offset-by-three">
-                            <!-- changed to 'open this in Trove', as using the word see isn't inclusive language -->
                             <a href="" target="_blank" class="result-button button">Open this in Trove</a>
                             <img class="line" id="underline" src="images/Handdrawn/Grey-underline-home.svg">
                         </div>
@@ -360,10 +375,12 @@
 		<section id="newspaper" class="hide">
             
             <!-- Navigation -->
-            <div class="row nav">
-                <a class="back-link newspaper" title="go back">&lt;</a>
-				<a class="logo-small">UD &ndash; Home</a>
-                <a class="about-link">About</a>
+            <div class="nav-container">
+                <div class="row nav">
+                    <a class="back-link newspaper" title="go back">&lt;</a>
+                    <a class="logo-small">UD &ndash; Home</a>
+                    <a class="about-link">About</a>
+                </div>
             </div>
             
             <div id="newspaper-content">
@@ -387,9 +404,9 @@
                         <div class="ten columns offset-by-one">
                             <p id="doozy">Are there errors in this text? If there are, what a doozy! Help us correct them by opening this article in Trove!</p>
                         </div>
-
                         <div class="six columns offset-by-three">
                             <a href="" target="_blank" id="news-open" class="result-button button">Open this in Trove</a>
+                            <img class="line" id="underline" src="images/Handdrawn/Grey-underline-home.svg">
                         </div>
                     </div>
                 </div>

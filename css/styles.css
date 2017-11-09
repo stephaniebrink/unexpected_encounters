@@ -69,19 +69,20 @@ h3 {
 
 button,
 .button {
-    cursor: pointer;
-    text-transform: uppercase;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
     color: #619741;
     background-color: #fff;
-    border: #619741 2.5px solid;
     font-size: 1.5rem;
-    letter-spacing: .1em;
-    width: 80%;
-    height: 7rem;
-    margin: 0 auto;
-    display: block;
     font-weight: 400;
-    transition: all .3s ease; }
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    line-height: 1.4em;
+    border: #619741 2.5px solid;
+    transition: all .3s ease;
+    cursor: pointer;}
 
     button:hover,
     .button:hover {
@@ -183,15 +184,6 @@ a {
         left: 63%; }
 }
 
-#disclaimer {
-	display: none;
-    background-color: rgba(97,151,65,1);
-    color: #fff;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    overflow: scroll; }
-
 
 /* Home
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -208,7 +200,7 @@ a {
         max-width: 300px; }
 
     #arrows-icon {
-        margin-bottom: -15%; }
+        margin-bottom: -17%; }
 
 	#location-icon {
 	    width: 8rem;
@@ -222,15 +214,20 @@ a {
     max-width: 200px; }
 
 #pointing-img {
-    width: 55%;
-    max-height: 11rem;
+    width: 50%;
+    max-height: 7rem;
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     right: 0; }
 
 @media screen and (min-width: 1500px) {
     #arrows-icon {
         margin-bottom: -10%; }
+}
+@media screen and (min-height: 600px) {
+    #pointing-img {
+        max-height: 10rem;
+    }
 }
 
 
@@ -253,42 +250,39 @@ a {
 	    margin-bottom: 3rem; }
 
     #about .afternav p:last-of-type {
-        margin-bottom: 10rem; }
+        margin-bottom: 4rem; }
 
+@media screen and (min-height: 800px) {
+    #about .afternav p:last-of-type {
+        max-height: 10rem;
+    }
+}
 
 
 /* Navigation
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.nav {
-    position: relative;
-    margin: 0 auto;
+.nav-container {
     width: 100%;
-    background: #fff;
-    height: 7rem;
-    top: 0;
-    padding-top: 0.75rem;
+    position: fixed;
     z-index: 1;
-    max-width: 1400px; }
+}
+.nav {
+    height: 7rem;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0.75rem;
+    z-index: 1;
+    background: #fff; }
     
     .back-link {
-        position: absolute;
-        display: inline-block;
+        float: left;
         font-size: 2em;
         color: #303030;
         cursor: pointer;
         font-weight: 400; }
 
-    .error,
-    .select,
-    .results, 
-    .flickr,
-    .newspaper {
-        left: 2rem; }
-
-    .about {
-        right: 2rem; }
-    
     .logo {
         height: 3rem;
         margin: 0 auto;
@@ -303,26 +297,29 @@ a {
 		font-size: 0;
 		width: 50px;
         height: 100%;
-        margin: -0.5rem auto 0;
+        margin: -1rem auto 0;
         cursor: pointer;
         position: absolute;
         left: 50%;
         transform: translateX(-50%); }
 		
     .about-link {
-        position: absolute;
-        display: inline;
-        right: 2.5rem;
-        top: 2.5rem;
+        float: right;
+        margin-top: 1.5rem;
         font-size: .95em;
         cursor: pointer;
         font-weight: 400;
         color: #303030;
         letter-spacing: 0.06em;
         text-transform: uppercase; }
+        
+    .back-link.about {
+        float: right;
+        margin-right: 1rem; 
+    }
 
 .afternav {
-    padding-top: 4rem; }
+    padding-top: 8rem; }
 
 .main-row {
 	margin: 0 auto;
@@ -333,13 +330,10 @@ a {
 
 @media screen and (min-width: 550px) {
     .afternav {
-        padding-top: 6rem; }
+    }
 }
 
 @media screen and (min-width: 1401px) {
-    .nav {
-        width: 1400px; }
-    
     .nav:before {
         content: '';
         height: 7rem;
@@ -603,8 +597,8 @@ div#star-twelve {
     margin-bottom: 2rem; }
 
 #places {
-	margin-bottom: 13rem; }
-	
+	margin-bottom: 5rem; }
+
 #loc-denied {
 	display: none;
 	padding-bottom: 2em;
@@ -613,14 +607,14 @@ div#star-twelve {
 	text-align: center; }
 	
 #google-strip {
-    background-color: #303030;
-    text-align: center;
-    height: 5rem;
+    position: fixed;
     bottom: 0;
-    position: fixed; }
+    padding: .5rem 0 0;
+    background-color: #303030;
+    text-align: center; }
 
 img#google {
-    margin-top: 1.5rem; }
+     }
 
 
 /*  Results
@@ -727,9 +721,12 @@ img#little-guy-oops {
 /*  Individual Artifacts - Flickr
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+/*
+K - Not sure why we need this?
 div#flickr-content,
 div#newspaper-content {
     overflow: scroll; }
+*/
 
 img.artefact-img {
     width: 100%;
@@ -752,13 +749,13 @@ p#desc {
 
 a.button {
     text-decoration: none;
-    padding-top: 2rem;
     text-align: center; }
 
 img.line {
     position: relative;
+    display: block;
     width: 90%;
-    margin: 0.65rem 0 10rem; }
+    margin: 0.65rem auto 2rem; }
 
 @media screen and (max-width: 550px) {
     #img-container,
@@ -780,7 +777,7 @@ img.line {
 
 div#grey-wrap {
     font-family: 'Merriweather', serif;
-    background-color: #fafafa;
+    background-color: #EAEAEA;
     padding: 4rem 4rem 4rem;
     line-height: 1.8; }
 
@@ -798,9 +795,6 @@ p#newspaper-desc {
 
 p#doozy {
     margin: 3rem 0 4rem; }
-
-section#newspaper .button {
-    margin: 0 auto 10rem; }
 
 #news-open:after {
     content: url(../images/handdrawn/curved-arrow-down.svg);

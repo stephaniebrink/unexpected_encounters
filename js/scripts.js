@@ -80,6 +80,16 @@ $(document).ready(function() {
         $("#select").fadeIn('fast');
         $("#results").fadeOut('fast');
     });
+        // From individual flickr picture page
+    $('.back-link.flickr').click(function() {
+        $("#results").fadeIn('fast');
+        $("#flickr").fadeOut('fast');
+    });
+    // From individual newspaper article page
+    $('.back-link.newspaper').click(function() {
+        $("#results").fadeIn('fast');
+        $("#newspaper").fadeOut('fast');
+    });
     // From error page
     $('.back-link.error').click(function() {
         $("#location-error").fadeOut('fast');
