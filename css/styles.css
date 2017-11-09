@@ -125,7 +125,7 @@ a {
 	    transform: translate(-50%,-50%); }
 	
 		#intro-centre:after {
-		    content: url(../images/Handdrawn/Launch-explosion-white.svg);
+		    content: url(../images/handdrawn/launch-explosion-white.svg);
 		    position: absolute;
 		    opacity: 0.15;
 		    width: 90%;
@@ -292,7 +292,7 @@ a {
         left: 2.5rem; }
         
     .logo-small {
-        background: url(../images/UD-logo-black.svg) no-repeat center center;
+        background: url(../images/ud-logo-black.svg) no-repeat center center;
         background-size: 95%;
         text-indent: -9999px;
 		font-size: 0;
