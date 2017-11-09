@@ -200,7 +200,8 @@ a {
         max-width: 300px; }
 
     #arrows-icon {
-        margin-bottom: -17%; }
+        height: 15rem;
+        margin-bottom: 2rem; }
 
 	#location-icon {
 	    width: 8rem;
@@ -220,9 +221,9 @@ a {
     bottom: 0;
     right: 0; }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-height: 600px) {
     #arrows-icon {
-        margin-bottom: -10%; }
+        height: 100% }
 }
 @media screen and (min-height: 600px) {
     #pointing-img {
