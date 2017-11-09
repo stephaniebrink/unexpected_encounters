@@ -1,3 +1,5 @@
+var resultsPos = 0;
+
 $(document).ready(function() {	
 	
 	// ----- GLOBAL VARIABLES -----
@@ -79,16 +81,19 @@ $(document).ready(function() {
     $('.back-link.results').click(function() {
         $("#select").fadeIn('fast');
         $("#results").fadeOut('fast');
+        scrollToTop();
     });
         // From individual flickr picture page
     $('.back-link.flickr').click(function() {
         $("#results").fadeIn('fast');
         $("#flickr").fadeOut('fast');
+        scrollToResults();
     });
     // From individual newspaper article page
     $('.back-link.newspaper').click(function() {
         $("#results").fadeIn('fast');
         $("#newspaper").fadeOut('fast');
+        scrollToResults();
     });
     // From error page
     $('.back-link.error').click(function() {
@@ -221,6 +226,7 @@ $(document).ready(function() {
 
                 // Retrieve Flickr pics data from Trove
                 trovePics(encodedPlace);
+                
             });
 		}
 	})
@@ -258,8 +264,10 @@ $(document).ready(function() {
                 troveNews(place,true);
 	            
 	        } else {
+                console.log("No pics found");
                 // Just retrieve newspaper article data from Trove ('false' indicates there are NO pic results)
 	            troveNews(place,false);
+                
 	        };
 	    });
 	}
@@ -311,6 +319,8 @@ $(document).ready(function() {
 	            
 	        } else {
                 
+                console.log("No newspapers found");
+                
                 // If there are no newspaper results, but there were picture results
                 if (pics == true) {
                     
@@ -354,6 +364,9 @@ $(document).ready(function() {
                 parent.append(divs.splice(Math.floor(Math.random() * divs.length), 1)[0]);
             }
         });
+        
+        // Scroll to top
+        scrollToTop();
 	}
     
     // ----- NO RESULTS - BACK TO PLACE SELECTION -----
@@ -415,6 +428,12 @@ $('body').on('click', '.flickr-result', function () {
     }
     $('.result-button').attr('href', thisTroveLink);
     
+    // Find scroll position
+    resultsPos = $(window).scrollTop();
+    console.log(resultsPos);
+    
+    // Scroll to top
+    scrollToTop();    
 });
 
 $('body').on('click', '.newspaper-result', function() {
@@ -434,17 +453,25 @@ $('body').on('click', '.newspaper-result', function() {
     $('#date').text(thisDate);
     $('#newspaper-desc').text(thisArticle);
     $('.result-button').attr('href', thisTroveLink);
-        
+    
+    // Find scroll position
+    resultsPos = $(window).scrollTop();
+    console.log(resultsPos);
+    
+    // Scroll to top
+    scrollToTop();
 });
 
-// BACK LINK FOR FLICKR RESULT
-$('.back-link.flickr').click(function() {
-    $('#flickr').fadeOut('fast');
-    $('#results').fadeIn('fast');
-});
 
-// BACK LINK FOR NEWSPAPER RESULT
-$('.back-link.newspaper').click(function() {
-    $('#newspaper').fadeOut('fast');
-    $('#results').fadeIn('fast');
-});
+
+//// SCROLL TO TOP
+function scrollToTop() {
+    $(window).scrollTop(0);
+    $(window).animate({scrollTop:0}, 0);
+};
+
+//// SCROLL TO PREV RESULST POSITION
+function scrollToResults() {
+    $(window).scrollTop(resultsPos);
+    $(window).animate({scrollTop:resultsPos}, 0);
+};

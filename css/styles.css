@@ -346,8 +346,7 @@ a {
 
 #loading,
 #discovering,
-#location-error,
-#flickr {
+#location-error {
     position: fixed;
     top: 0;
     z-index: 1;
