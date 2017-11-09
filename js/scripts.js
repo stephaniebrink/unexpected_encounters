@@ -16,7 +16,7 @@ $(document).ready(function() {
         $('#onboard').fadeIn('fast');
     });
     setTimeout(function(){ 
-        $('#intro').hide();
+        $('#intro').fadeOut('fast');
         $('#onboard').fadeIn('fast');
     }, 2000);
 //    $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
@@ -44,7 +44,7 @@ $(document).ready(function() {
                 $('#loc-denied').hide();
                 
                 // Hide API error message
-                $('#apiFail').hide();
+                $('#api-fail').hide();
             }
 
             function error(err) {
@@ -227,7 +227,7 @@ $(document).ready(function() {
                 $("#discovering").fadeIn('fast');
                 
                 // Hide API error message if applicable
-                $('#apiFail').hide();
+                $('#api-fail').hide();
                 
                 // Remove any previous results
                 $(".all-results").empty();
@@ -247,7 +247,6 @@ $(document).ready(function() {
 	})
     
 	// ----- TROVE API: FLICKR PICTURES -----
-
     
 	function trovePics(place) {
         
@@ -290,13 +289,12 @@ $(document).ready(function() {
 
                 };
             },
-            timeout: 7000
+            timeout: 10000
         }).fail( function( xhr, status ) {
-            console.log("Pic call failed");
             // Abort pic API call
             picRequest.abort();
             // Show API error message
-            $('#apiFail').show();
+            $('#api-fail').show();
             // Hide loading screen
             $("#discovering").fadeOut('fast');
         });
@@ -391,7 +389,7 @@ $(document).ready(function() {
             // Abort newspaper API call
             newsRequest.abort();
             // Show API error message
-            $('#apiFail').show();
+            $('#api-fail').show();
             // Hide loading screen
             $("#discovering").fadeOut('fast');
         });
