@@ -10,8 +10,17 @@ $(document).ready(function() {
 		lng;   
 
     // ----- INTRO PAGE FADEOUT -----
-    $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
-    $('#onboard').delay(2000).fadeIn('slow');
+    // Fades out after 2 seconds or on click
+    $('#intro').click(function() {
+        $('#intro').hide();
+        $('#onboard').fadeIn('fast');
+    });
+    setTimeout(function(){ 
+        $('#intro').hide();
+        $('#onboard').fadeIn('fast');
+    }, 2000);
+//    $('#intro').fadeIn('fast').delay(2000).fadeOut('fast');
+//    $('#onboard').delay(2000).fadeIn('slow');
     
     // ----- ON CLICK: "GOT IT" -----
     $('#got-it').click(function() {
@@ -33,6 +42,9 @@ $(document).ready(function() {
                 
                 // Hide default location error message
                 $('#loc-denied').hide();
+                
+                // Hide API error message
+                $('#apiFail').hide();
             }
 
             function error(err) {
@@ -214,6 +226,9 @@ $(document).ready(function() {
                 // Show loading screen
                 $("#discovering").fadeIn('fast');
                 
+                // Hide API error message if applicable
+                $('#apiFail').hide();
+                
                 // Remove any previous results
                 $(".all-results").empty();
                 $("#place-name").empty();
@@ -223,7 +238,7 @@ $(document).ready(function() {
                 
                 // Encode place name for Trove API call (Eg. turn & into %26)
                 var encodedPlace = encodeURIComponent(place);
-
+                
                 // Retrieve Flickr pics data from Trove
                 trovePics(encodedPlace);
                 
@@ -233,43 +248,58 @@ $(document).ready(function() {
     
 	// ----- TROVE API: FLICKR PICTURES -----
 
+    
 	function trovePics(place) {
-	    
-	    var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + troveKey + "&encoding=json&callback=?";
-	    
-	    $.getJSON(url, function(data) {
-	        
-	        var zoneArray = data.response.zone;
-	        	        
-	        // If Trove found a match
-	        if (zoneArray[0].records.n > 0) {
-	            
-	            // Display images
-	            var workArray = zoneArray[0].records.work;
-	            
-	            for (i = 0; i < workArray.length; i++) {
-	                // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
-	                var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution,
-                        versionTitle = workArray[i].title,
-                        versionCreator = workArray[i].version[0].record[0].metadata.dc.creator,
-                        versionCreatorLink = workArray[i].identifier[0].value,
-                        versionDesc = workArray[i].version[0].record[0].metadata.dc.description.value,
-                        versionTroveLink = workArray[i].troveUrl;
-                    
-                    // need to append more data in a hidden div so it can be retrived later when the item is selected
-	                $('.all-results').append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3><div class="hide"><a class="creator" href="' + versionCreatorLink + '">' + versionCreator + '</a><p class="snip">' + versionDesc + '</p><a href="' + versionTroveLink + '" class="button"></a></div></div>');
-                }
+        
+        var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20AND%20%22http://creativecommons.org/licenses/%22%20AND%20nuc:YUF&zone=picture&include=workversions&key=' + troveKey + "&encoding=json&callback=?";
+
+        var picRequest = $.ajax({
+            dataType: "json",
+            url: url,
+            success: function(picData) {
+                var zoneArray = picData.response.zone;
                 
-                // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
-                troveNews(place,true);
-	            
-	        } else {
-                console.log("No pics found");
-                // Just retrieve newspaper article data from Trove ('false' indicates there are NO pic results)
-	            troveNews(place,false);
-                
-	        };
-	    });
+                // If Trove found a match
+                if (zoneArray[0].records.n > 0) {
+
+                    console.log(zoneArray[0].records.n + " pics found");
+
+                    // Display images
+                    var workArray = zoneArray[0].records.work;
+
+                    for (i = 0; i < workArray.length; i++) {
+                        // *** there seems to be an issue with the below line, when returning results Canberra Museum & Gallery *** 
+                        var versionImg = workArray[i].version[0].record[0].metadata.dc.mediumresolution,
+                            versionTitle = workArray[i].title,
+                            versionCreator = workArray[i].version[0].record[0].metadata.dc.creator,
+                            versionCreatorLink = workArray[i].identifier[0].value,
+                            versionDesc = workArray[i].version[0].record[0].metadata.dc.description.value,
+                            versionTroveLink = workArray[i].troveUrl;
+
+                        // need to append more data in a hidden div so it can be retrived later when the item is selected
+                        $('.all-results').append('<div class="result flickr-result"><div class="img-wrap"><img src="' + versionImg + '" class="result-img"></div><h3 class="result-title">' + versionTitle + '</h3><div class="hide"><a class="creator" href="' + versionCreatorLink + '">' + versionCreator + '</a><p class="snip">' + versionDesc + '</p><a href="' + versionTroveLink + '" class="button"></a></div></div>');
+                    }
+
+                    // Retrieve newspaper article data from Trove ('true' indicates there are pic results)
+                    troveNews(place,true);
+
+                } else {
+                    console.log("No pics found");
+                    // Just retrieve newspaper article data from Trove ('false' indicates there are NO pic results)
+                    troveNews(place,false);
+
+                };
+            },
+            timeout: 7000
+        }).fail( function( xhr, status ) {
+            console.log("Pic call failed");
+            // Abort pic API call
+            picRequest.abort();
+            // Show API error message
+            $('#apiFail').show();
+            // Hide loading screen
+            $("#discovering").fadeOut('fast');
+        });
 	}
 	
 
@@ -279,74 +309,92 @@ $(document).ready(function() {
 	    
 	    var url = 'http://api.trove.nla.gov.au/result?q="' + place + '"%20date:[*%20TO%201900]%20NOT%20Advertising&zone=newspaper&reclevel=full&include=articletext&key=' + troveKey + "&encoding=json&callback=?";
 	            
-	    $.getJSON(url, function(data) {
-	        
-	        var newsZone = data.response.zone[0];
-	        
-	        // If Trove found a match
-	        if (newsZone.records.n > 0) {
-	            
-	            // Display images
-	            var articleArray = newsZone.records.article;
-	            
-	            for (i = 0; i < articleArray.length; i++) {
-                    
-	                var pageUrl = articleArray[i].trovePageUrl,
-	                	pageNum = pageUrl.split("http://trove.nla.gov.au/ndp/del/page/").slice(1),
-		                pdfUrl = 'http://trove.nla.gov.au/newspaper/rendition/nla.news-page' + pageNum + '.pdf',
-	                	newsHeading = articleArray[i].heading,
-                        newspaper = articleArray[i].title.value,
-                        date = moment(articleArray[i].date),
-                        newsDate = date.format('Do MMMM YYYY'),
-                        newsArticle = articleArray[i].articleText,
-						newsText = $(newsArticle).text(),
-                        newsTroveLink = articleArray[i].troveUrl;
-                    
-                    var randNews = randomInt(1,10);
-	                
-	                // Append to page
-                    $('.all-results').append('<div class="result newspaper-result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3><div class="hide"><p id="newspaper-name">' + newspaper + '</p><p id="newsdate">' + newsDate + '</p><p id="news-text">' + newsText + '</p><a class="button" href="' + newsTroveLink + '"></a></div></div>');
-                }
-	            
-	            // Hide place selection page
-                $("#select").fadeOut('fast');
+        var newsRequest = $.ajax({
+            dataType: "json",
+            url: url,
+            success: function(newsData) {
+        
+                var newsZone = newsData.response.zone[0];
 
-                // Display Results page
-                $("#results").fadeIn('fast');
+                // If Trove found a match
+                if (newsZone.records.n > 0) {
 
-                // Hide loading screen
-                loadComplete();
-	            
-	        } else {
-                
-                console.log("No newspapers found");
-                
-                // If there are no newspaper results, but there were picture results
-                if (pics == true) {
-                    
+                    console.log(newsZone.records.n + " news articles found");
+
+                    // Display images
+                    var articleArray = newsZone.records.article;
+
+                    for (i = 0; i < articleArray.length; i++) {
+
+                        var pageUrl = articleArray[i].trovePageUrl,
+                            pageNum = pageUrl.split("http://trove.nla.gov.au/ndp/del/page/").slice(1),
+                            pdfUrl = 'http://trove.nla.gov.au/newspaper/rendition/nla.news-page' + pageNum + '.pdf',
+                            newsHeading = articleArray[i].heading,
+                            newspaper = articleArray[i].title.value,
+                            date = moment(articleArray[i].date),
+                            newsDate = date.format('Do MMMM YYYY'),
+                            newsArticle = articleArray[i].articleText,
+                            newsText = $(newsArticle).text(),
+                            newsTroveLink = articleArray[i].troveUrl;
+
+                        var randNews = randomInt(1,10);
+
+                        // Append to page
+                        $('.all-results').append('<div class="result newspaper-result"><div class="img-wrap"><img src="images/newspapers/newspaper' + randNews + '.jpg" class="result-img"></div><h3 class="result-title">' + newsHeading + '</h3><div class="hide"><p id="newspaper-name">' + newspaper + '</p><p id="newsdate">' + newsDate + '</p><p id="news-text">' + newsText + '</p><a class="button" href="' + newsTroveLink + '"></a></div></div>');
+                    }
+
                     // Hide place selection page
                     $("#select").fadeOut('fast');
-                    
+
                     // Display Results page
                     $("#results").fadeIn('fast');
-                    
-                    loadComplete();
-                    
-                // If there are no results at all
-                } else {
-                    // Hide place selection page
-                    $("#select").fadeOut('fast');
-                    // Remove any previously appended placenames
-                    $("#errorPlace").empty();
-                    // Append placename to error page
-                    $("#errorPlace").append(decodeURIComponent(place));
-                    // Show error message
-                    $("#location-error").fadeIn('fast');
 
+                    // Hide loading screen
                     loadComplete();
+
+                } else {
+
+                    console.log("No newspapers found");
+
+                    // If there are no newspaper results, but there were picture results
+                    if (pics == true) {
+
+                        // Hide place selection page
+                        $("#select").fadeOut('fast');
+
+                        // Display Results page
+                        $("#results").fadeIn('fast');
+
+                        loadComplete();
+
+                    // If there are no results at all
+                    } else {
+                        // Hide place selection page
+                        $("#select").fadeOut('fast');
+                        // Remove any previously appended placenames
+                        $("#errorPlace").empty();
+                        // Append placename to error page
+                        $("#errorPlace").append(decodeURIComponent(place));
+                        // Show error message
+                        $("#location-error").fadeIn('fast');
+
+                        loadComplete();
+                    }
                 }
-	        };
-	    });
+            },
+            timeout: 7000
+        }).fail( function( xhr, status ) {
+            if( status == "timeout" ) {
+                console.log("TIMEOUT")
+            }
+            console.log("News call failed");
+            // Abort newspaper API call
+            newsRequest.abort();
+            // Show API error message
+            $('#apiFail').show();
+            // Hide loading screen
+            $("#discovering").fadeOut('fast');
+        });
 	}
 	
 	// ----- API CALL COMPLETE -----
@@ -430,7 +478,6 @@ $('body').on('click', '.flickr-result', function () {
     
     // Find scroll position
     resultsPos = $(window).scrollTop();
-    console.log(resultsPos);
     
     // Scroll to top
     scrollToTop();    
@@ -456,7 +503,6 @@ $('body').on('click', '.newspaper-result', function() {
     
     // Find scroll position
     resultsPos = $(window).scrollTop();
-    console.log(resultsPos);
     
     // Scroll to top
     scrollToTop();
