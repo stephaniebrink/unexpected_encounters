@@ -138,6 +138,13 @@ $(document).ready(function() {
 			
 			// TRY: Coordinates for National Library of Australia  			
 //  			currLoc = new google.maps.LatLng(-35.296623,149.129822);
+            
+            // If geolocation didn't work - default to Canberra city coordinates
+            if (lat == undefined || lng == undefined) {
+                $('#loc-denied').show();
+                lat = -35.28346;
+                lng = 149.12807;
+            }
 
 			// Current location coordinates
 			currLoc = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
