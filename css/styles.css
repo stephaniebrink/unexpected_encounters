@@ -604,14 +604,14 @@ div#star-twelve {
 	margin-bottom: 5rem; }
 
 .error-message {
-	display: none;
 	padding-bottom: 2em;
 	width: 80%;
 	margin: 0 auto;
 	text-align: center; }
 
 #api-fail {
-	color: #619741; }
+	color: #619741;
+    font-weight: 500; }
 	
 #google-strip {
     position: fixed;
