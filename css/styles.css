@@ -200,7 +200,7 @@ a {
         max-width: 300px; }
 
     #arrows-icon {
-        height: 15rem;
+        height: 20rem;
         margin-bottom: 2rem; }
 
 	#location-icon {
@@ -218,13 +218,9 @@ a {
     width: 50%;
     max-height: 7rem;
     position: absolute;
-    bottom: 0;
+    bottom: -1.5%;
     right: 0; }
 
-@media screen and (min-height: 600px) {
-    #arrows-icon {
-        height: 100% }
-}
 @media screen and (min-height: 600px) {
     #pointing-img {
         max-height: 10rem;
@@ -605,14 +601,21 @@ div#star-twelve {
 	margin-bottom: 5rem; }
 
 .error-message {
-	padding-bottom: 2em;
+	padding: 1.3rem 3rem;
 	width: 80%;
-	margin: 0 auto;
-	text-align: center; }
+	margin: 0 auto 3rem;
+	text-align: center;
+    font-weight: 500;
+    color: #fff; }
 
 #api-fail {
-	color: #619741;
-    font-weight: 500; }
+    background-color: #619741; }
+
+#api-fail img {
+    height: 2.5rem; }
+
+#loc-denied {
+    background-color: #303030; }
 	
 #google-strip {
     position: fixed;
@@ -623,6 +626,16 @@ div#star-twelve {
 img#google {
 	vertical-align: middle;
     padding: .9rem 0; }
+
+@media screen and (min-width: 550px) {
+    .error-message {
+        padding: 1.3rem 5rem; }
+}
+
+@media screen and (min-width: 550px) and (max-width: 950px) {
+    .error-message {
+        width: 100%; }
+}
 
 
 /*  Results
@@ -777,6 +790,9 @@ img.line {
     img.artefact-img {
         height: 600px;
         padding-top: 12rem; }
+    
+    img.line {
+        margin: 0.65rem auto 5rem; }
 }
 
 

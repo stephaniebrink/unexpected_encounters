@@ -18,7 +18,7 @@ $(document).ready(function() {
     setTimeout(function(){ 
         $('#intro').hide();
         $('#onboard').fadeIn('slow');
-    }, 2000);
+    }, 1700);
 
     
     // ----- ON CLICK: "GOT IT" -----
