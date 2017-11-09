@@ -66,6 +66,16 @@ $(document).ready(function() {
     $('.logo-small').click(function() {
         $("#home").fadeIn('fast');
         $("#about").fadeOut('fast');
+        
+        // Hide everything
+        $("#about").hide();
+        $("#loading").hide();
+        $("#select").hide();
+        $("#discovering").hide();
+        $("#location-error").hide();
+        $("#results").hide();
+        $("#flickr").hide();
+        $("#newspaper").hide();
     });
     
     // ----- ABOUT BUTTON -----
